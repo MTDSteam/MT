@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MTDSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Asset">
+    <Key>
+      <PropertyRef Name="AssetID" />
+    </Key>
+    <Property Name="AssetID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SystemCategoryID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CartegoryId" Type="uniqueidentifier" />
+    <Property Name="AssetName" Type="nvarchar" MaxLength="150" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="AssetColumn">
+    <Key>
+      <PropertyRef Name="ColumnID" />
+    </Key>
+    <Property Name="ColumnID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SystemCategoryID" Type="uniqueidentifier" />
+    <Property Name="CategoryID" Type="uniqueidentifier" />
+    <Property Name="AssetID" Type="uniqueidentifier" />
+    <Property Name="SubAssetID" Type="uniqueidentifier" />
+    <Property Name="ColumnName" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“MTDS.dbo.AssetProperty”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="AssetProperty">
+          <Property Name="PropertyID" Type="uniqueidentifier" />
+          <Property Name="PropertyValue" Type="nvarchar" MaxLength="250" />
+          <Property Name="ColumnID" Type="uniqueidentifier" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+        </EntityType>-->
+  <EntityType Name="BillColumns">
+    <Key>
+      <PropertyRef Name="BillType" />
+    </Key>
+    <Property Name="BillType" Type="int" Nullable="false" />
+    <Property Name="BillColumnName" Type="nvarchar" MaxLength="150" />
+    <Property Name="BillColumnID" Type="nvarchar" MaxLength="150" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="BillComments">
+    <Key>
+      <PropertyRef Name="BillType" />
+    </Key>
+    <Property Name="BillType" Type="int" Nullable="false" />
+    <Property Name="BillID" Type="uniqueidentifier" />
+    <Property Name="BillColumnID" Type="nvarchar" MaxLength="150" />
+    <Property Name="BillColumnValue" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="BillTypes">
+    <Key>
+      <PropertyRef Name="BillType" />
+    </Key>
+    <Property Name="BillType" Type="int" Nullable="false" />
+    <Property Name="BillTypeName" Type="nvarchar" MaxLength="150" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="150" />
+    <Property Name="SystemCategoryID" Type="uniqueidentifier" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Modules">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+    </Key>
+    <Property Name="ModuleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModuleName" Type="nvarchar" MaxLength="150" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="RoleRights">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ModuleID" Type="uniqueidentifier" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="SubAsset">
+    <Key>
+      <PropertyRef Name="SubAssetID" />
+    </Key>
+    <Property Name="SubAssetID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SystemCategoryID" Type="uniqueidentifier" />
+    <Property Name="CategroyID" Type="uniqueidentifier" />
+    <Property Name="AssetID" Type="uniqueidentifier" />
+    <Property Name="SubAssetName" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="SystemCategory">
+    <Key>
+      <PropertyRef Name="SystemCategoryID" />
+    </Key>
+    <Property Name="SystemCategoryID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SystemCategoryName" Type="nvarchar" MaxLength="150" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“MTDS.dbo.SystemLogs”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="SystemLogs">
+          <Property Name="Id" Type="uniqueidentifier" />
+          <Property Name="IpAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="EventType" Type="int" />
+          <Property Name="EventMessage" Type="nvarchar(max)" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loginName" Type="nvarchar" MaxLength="150" />
+    <Property Name="username" Type="nvarchar" MaxLength="150" />
+    <Property Name="password" Type="nvarchar" MaxLength="150" />
+    <Property Name="email" Type="nvarchar" MaxLength="150" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="150" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="150" />
+    <Property Name="provinceID" Type="int" />
+    <Property Name="AreaID" Type="int" />
+    <Property Name="CountyID" Type="int" />
+    <Property Name="address" Type="nvarchar" MaxLength="150" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="lastlogintime" Type="datetime" />
+    <Property Name="ParentID" Type="uniqueidentifier" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityContainer Name="MTDSModelStoreContainer">
+    <EntitySet Name="Asset" EntityType="Self.Asset" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssetColumn" EntityType="Self.AssetColumn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillColumns" EntityType="Self.BillColumns" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillComments" EntityType="Self.BillComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillTypes" EntityType="Self.BillTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleRights" EntityType="Self.RoleRights" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubAsset" EntityType="Self.SubAsset" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemCategory" EntityType="Self.SystemCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

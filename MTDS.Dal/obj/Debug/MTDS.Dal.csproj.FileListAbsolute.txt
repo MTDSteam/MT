@@ -1,0 +1,5 @@
+F:\Projects\MTDS\MTDS.Dal\bin\Debug\MTDS.Dal.dll
+F:\Projects\MTDS\MTDS.Dal\bin\Debug\MTDS.Dal.pdb
+F:\Projects\MTDS\MTDS.Dal\obj\Debug\MTDS.Dal.csprojResolveAssemblyReference.cache
+F:\Projects\MTDS\MTDS.Dal\obj\Debug\MTDS.Dal.dll
+F:\Projects\MTDS\MTDS.Dal\obj\Debug\MTDS.Dal.pdb

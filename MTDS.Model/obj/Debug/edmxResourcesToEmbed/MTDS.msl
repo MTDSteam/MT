@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MTDSModelStoreContainer" CdmEntityContainer="MTDSEntities">
+    <EntitySetMapping Name="Asset">
+      <EntityTypeMapping TypeName="MTDSModel.Asset">
+        <MappingFragment StoreEntitySet="Asset">
+          <ScalarProperty Name="AssetID" ColumnName="AssetID" />
+          <ScalarProperty Name="SystemCategoryID" ColumnName="SystemCategoryID" />
+          <ScalarProperty Name="CartegoryId" ColumnName="CartegoryId" />
+          <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssetColumn">
+      <EntityTypeMapping TypeName="MTDSModel.AssetColumn">
+        <MappingFragment StoreEntitySet="AssetColumn">
+          <ScalarProperty Name="ColumnID" ColumnName="ColumnID" />
+          <ScalarProperty Name="SystemCategoryID" ColumnName="SystemCategoryID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="AssetID" ColumnName="AssetID" />
+          <ScalarProperty Name="SubAssetID" ColumnName="SubAssetID" />
+          <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BillColumns">
+      <EntityTypeMapping TypeName="MTDSModel.BillColumns">
+        <MappingFragment StoreEntitySet="BillColumns">
+          <ScalarProperty Name="BillType" ColumnName="BillType" />
+          <ScalarProperty Name="BillColumnName" ColumnName="BillColumnName" />
+          <ScalarProperty Name="BillColumnID" ColumnName="BillColumnID" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BillComments">
+      <EntityTypeMapping TypeName="MTDSModel.BillComments">
+        <MappingFragment StoreEntitySet="BillComments">
+          <ScalarProperty Name="BillType" ColumnName="BillType" />
+          <ScalarProperty Name="BillID" ColumnName="BillID" />
+          <ScalarProperty Name="BillColumnID" ColumnName="BillColumnID" />
+          <ScalarProperty Name="BillColumnValue" ColumnName="BillColumnValue" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BillTypes">
+      <EntityTypeMapping TypeName="MTDSModel.BillTypes">
+        <MappingFragment StoreEntitySet="BillTypes">
+          <ScalarProperty Name="BillType" ColumnName="BillType" />
+          <ScalarProperty Name="BillTypeName" ColumnName="BillTypeName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="MTDSModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="SystemCategoryID" ColumnName="SystemCategoryID" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modules">
+      <EntityTypeMapping TypeName="MTDSModel.Modules">
+        <MappingFragment StoreEntitySet="Modules">
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="MTDSModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleRights">
+      <EntityTypeMapping TypeName="MTDSModel.RoleRights">
+        <MappingFragment StoreEntitySet="RoleRights">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubAsset">
+      <EntityTypeMapping TypeName="MTDSModel.SubAsset">
+        <MappingFragment StoreEntitySet="SubAsset">
+          <ScalarProperty Name="SubAssetID" ColumnName="SubAssetID" />
+          <ScalarProperty Name="SystemCategoryID" ColumnName="SystemCategoryID" />
+          <ScalarProperty Name="CategroyID" ColumnName="CategroyID" />
+          <ScalarProperty Name="AssetID" ColumnName="AssetID" />
+          <ScalarProperty Name="SubAssetName" ColumnName="SubAssetName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemCategory">
+      <EntityTypeMapping TypeName="MTDSModel.SystemCategory">
+        <MappingFragment StoreEntitySet="SystemCategory">
+          <ScalarProperty Name="SystemCategoryID" ColumnName="SystemCategoryID" />
+          <ScalarProperty Name="SystemCategoryName" ColumnName="SystemCategoryName" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="MTDSModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="loginName" ColumnName="loginName" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="provinceID" ColumnName="provinceID" />
+          <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="lastlogintime" ColumnName="lastlogintime" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="MTDSModel.UserRoles">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

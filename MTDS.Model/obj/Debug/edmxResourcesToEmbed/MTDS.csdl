@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MTDSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Asset">
+    <Key>
+      <PropertyRef Name="AssetID" />
+    </Key>
+    <Property Name="AssetID" Type="Guid" Nullable="false" />
+    <Property Name="SystemCategoryID" Type="Guid" Nullable="false" />
+    <Property Name="CartegoryId" Type="Guid" />
+    <Property Name="AssetName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AssetColumn">
+    <Key>
+      <PropertyRef Name="ColumnID" />
+    </Key>
+    <Property Name="ColumnID" Type="Guid" Nullable="false" />
+    <Property Name="SystemCategoryID" Type="Guid" />
+    <Property Name="CategoryID" Type="Guid" />
+    <Property Name="AssetID" Type="Guid" />
+    <Property Name="SubAssetID" Type="Guid" />
+    <Property Name="ColumnName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BillColumns">
+    <Key>
+      <PropertyRef Name="BillType" />
+    </Key>
+    <Property Name="BillType" Type="Int32" Nullable="false" />
+    <Property Name="BillColumnName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BillColumnID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BillComments">
+    <Key>
+      <PropertyRef Name="BillType" />
+    </Key>
+    <Property Name="BillType" Type="Int32" Nullable="false" />
+    <Property Name="BillID" Type="Guid" />
+    <Property Name="BillColumnID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BillColumnValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BillTypes">
+    <Key>
+      <PropertyRef Name="BillType" />
+    </Key>
+    <Property Name="BillType" Type="Int32" Nullable="false" />
+    <Property Name="BillTypeName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Guid" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SystemCategoryID" Type="Guid" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Modules">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+    </Key>
+    <Property Name="ModuleID" Type="Guid" Nullable="false" />
+    <Property Name="ModuleName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Guid" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RoleRights">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Guid" Nullable="false" />
+    <Property Name="ModuleID" Type="Guid" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SubAsset">
+    <Key>
+      <PropertyRef Name="SubAssetID" />
+    </Key>
+    <Property Name="SubAssetID" Type="Guid" Nullable="false" />
+    <Property Name="SystemCategoryID" Type="Guid" />
+    <Property Name="CategroyID" Type="Guid" />
+    <Property Name="AssetID" Type="Guid" />
+    <Property Name="SubAssetName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SystemCategory">
+    <Key>
+      <PropertyRef Name="SystemCategoryID" />
+    </Key>
+    <Property Name="SystemCategoryID" Type="Guid" Nullable="false" />
+    <Property Name="SystemCategoryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Guid" Nullable="false" />
+    <Property Name="loginName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="username" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="telephone" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="provinceID" Type="Int32" />
+    <Property Name="AreaID" Type="Int32" />
+    <Property Name="CountyID" Type="Int32" />
+    <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lastlogintime" Type="DateTime" Precision="3" />
+    <Property Name="ParentID" Type="Guid" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Guid" Nullable="false" />
+    <Property Name="RoleID" Type="Guid" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="MTDSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Asset" EntityType="Self.Asset" />
+    <EntitySet Name="AssetColumn" EntityType="Self.AssetColumn" />
+    <EntitySet Name="BillColumns" EntityType="Self.BillColumns" />
+    <EntitySet Name="BillComments" EntityType="Self.BillComments" />
+    <EntitySet Name="BillTypes" EntityType="Self.BillTypes" />
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Modules" EntityType="Self.Modules" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="RoleRights" EntityType="Self.RoleRights" />
+    <EntitySet Name="SubAsset" EntityType="Self.SubAsset" />
+    <EntitySet Name="SystemCategory" EntityType="Self.SystemCategory" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" />
+  </EntityContainer>
+</Schema>
