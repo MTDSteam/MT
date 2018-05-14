@@ -10,23 +10,14 @@ namespace MTDS.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
+           
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Home()
         {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
+            return View("Home");
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+     
     }
 }
