@@ -1,0 +1,372 @@
+﻿ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
+	color: #fff;
+	background: #abb0c0;
+}
+
+        .toolsNoF a {
+            margin-left: 10px;
+            color: #a7a7a7;
+            font-size: 12px;
+            background-color: #d5d5d5;
+            padding: 7px;
+            border-radius: 5px;
+        }
+
+        .tools_noclose a {
+            margin-left: 10px;
+            color: #a7a7a7;
+            font-size: 12px;
+            background-color: #d5d5d5;
+            padding: 7px;
+            border-radius: 5px;
+        }
+
+        .ol-attribution.ol-logo-only ul img {
+            display: none;
+        }
+
+        .ol-zoomslider {
+            background-color: #efefef;
+        }
+
+        #main-content.active {
+            margin: 0 !important;
+        }
+
+        .wrapper.site-min-height.active {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .conent_box {
+            background: #efefef;
+            padding: 15px;
+            position: relative;
+        }
+
+            .conent_box.active {
+                position: absolute;
+                height: 100%;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0 !important;
+            }
+
+        .panel-body.active {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .imgblock {
+            height: 500px;
+            background: #fff url(../img/map_bg.png) center -200px no-repeat;
+            background-size: cover;
+            border: #afafaf;
+        }
+
+            .imgblock.col-sm-8 {
+                background: #fff url(../img/map_bg.png) center top no-repeat;
+                background-size: 100%;
+            }
+
+        .search_num {
+            color: #fff;
+            font-size: 24px;
+            width: 200px;
+            height: 59px;
+            line-height: 52px;
+            border: 3px #fff solid;
+            background: #6dbe55;
+            cursor: pointer;
+            transition: all ease .4s;
+            margin-left: -200px;
+        }
+
+        .search_num.active, .search_num:hover {
+            color: #6dbe55;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .search_num_box.lingchuan {
+            position: absolute;
+            top: 172px;
+            left: 206px;
+            overflow: hidden;
+        }
+
+        .search_num_box.zezhou {
+            position: absolute;
+            top: 173px;
+            left: 189px;
+            overflow: hidden;
+        }
+
+        .auto-style1 {
+            width: 153px;
+        }
+
+        .auto-style2 {
+            min-width: 150px;
+            text-align: center;
+            vertical-align: middle;
+            width: 153px;
+        }
+
+        .panel-border {
+            border-top-width: 1px !important;
+        }
+
+        .textblock .panel-heading:hover, .textblock .panel-heading.active {
+            background: #d4eaf1;
+        }
+
+        .textblock .panel-heading a:hover {
+            color: #21628c;
+        }
+
+        .table {
+            margin-bottom: 30px !important;
+        }
+
+        .map_box > div {
+            width: 100%;
+            height: 376px;
+            border: #ccc solid 1px;
+            margin: 67px auto;
+        }
+
+        .conent_box.active .map_box {
+            height: 100%;
+            margin: 0;
+            padding-top: 70px;
+        }
+
+            .conent_box.active .map_box > div {
+                height: 100%;
+                margin: 0;
+            }
+
+        .conent_box.active .imgblock, .conent_box.active .textblock {
+            height: 100%;
+        }
+
+        .imgblock > div > a > i {
+            font-size: 18px;
+        }
+
+        .iw_poi_title {
+            color: #CC5522;
+            font-size: 15px;
+            overflow: hidden;
+            padding-right: 13px;
+            white-space: nowrap;
+            height: 30px;
+            display: block;
+            border-bottom: 1px #dfdfdf solid;
+        }
+
+        .iw_poi_content {
+            font-size: 14px;
+            overflow: visible;
+            padding-top: 10px;
+            white-space: -moz-pre-wrap;
+            word-wrap: break-word;
+            color: #666;
+            padding-right: 120px;
+            line-height: 30px;
+            background: url(../img/map_label_bg.png) center right no-repeat;
+        }
+
+
+        /*<!--地图样式-->*/
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            font-size: 10pt;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .marker {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #088;
+            border-radius: 10px;
+            background-color: #0ff;
+            opacity: 0.5;
+        }
+
+        .address {
+            text-decoration: none;
+            color: #aa3300;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: black 0.1em 0.1em 0.2em;
+        }
+
+        .ol-overlay-container {
+            z-index: 100;
+        }
+
+
+        .ol-popup {
+            position: absolute;
+            background-color: white;
+            -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+            bottom: 12px;
+            left: -50px;
+        }
+
+            .ol-popup:after, .ol-popup:before {
+                top: 100%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+            }
+
+            .ol-popup:after {
+                border-top-color: white;
+                border-width: 10px;
+                left: 48px;
+                margin-left: -10px;
+            }
+
+            .ol-popup:before {
+                border-top-color: #cccccc;
+                border-width: 11px;
+                left: 48px;
+                margin-left: -11px;
+            }
+
+        .ol-popup-closer {
+            text-decoration: none;
+            position: absolute;
+            top: 2px;
+            right: 8px;
+        }
+
+            .ol-popup-closer:after {
+                content: "×";
+            }
+
+        .info-title {
+            width: 90px;
+        }
+
+        .info-value {
+        }
+
+        #popup-info {
+            font-size: 14px;
+            font-family: "微软雅黑";
+            width: 714px;
+        }
+
+        #popup-content .markeInfo {
+            font-weight: bold;
+        }
+
+        #map .ol-zoom .ol-zoom-out {
+            margin-top: 204px;
+        }
+
+        #map .ol-zoomslider {
+            background-color: rgba(100,100,100,.1);
+            top: 2.3em;
+        }
+
+        #map .ol-touch .ol-zoom .ol-zoom-out {
+            margin-top: 212px;
+        }
+
+        #map .ol-toucu .ol-zoomslider {
+            top: 2.75em;
+        }
+
+        #map .ol-zoom-in.ol-has-tooltip:hover[role=tooltip],
+        #map .ol-zoom-in.ol-has-tooltip:focus[role=tooltip] {
+            top: 3px;
+        }
+
+        #map .ol-zoom-out.ol-has-tooltip:hover[role=tooltip],
+        #map .ol-zoom-out.ol-has-tooltip:focus[role=tooltip] {
+            top: 232px;
+        }
+
+        #map .ol-zoom-extent {
+            top: 280px;
+        }
+        .mouse-position-wrapper {
+            width: 300px;
+            height: 29px;
+            color: black;
+            position: absolute;
+            right: 240px;
+            bottom: 6px;
+            z-index: 999;
+        }
+
+
+#menu {
+    float: left;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 2000;
+}
+
+.checkbox{left:20px}
+
+/*提示框的样式信息*/
+
+.tooltip{ 
+    position: relative;
+    background: rgba(0,0,0,0.5);
+    border-radius: 4px;
+    color: white;
+    padding: 4px 8px;
+    opacity: 0.7;
+    white-space: nowrap;
+}
+.tooltip-measure {
+    opacity: 1;
+    font-weight: bold
+}
+
+.tooltip-static {
+    background-color: #ffcc33;
+    color: black;
+    border: 1px solid white;
+}
+.tooltip-measure:before,.tooltip-static:before {
+    border-top: 6px solid rgba(0, 0, 0, 0.5);
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    margin-left: -7px;
+    left: 50%;
+}
+.tooltip-static:before {
+    border-top-color: #ffcc33;
+}

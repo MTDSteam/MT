@@ -1,0 +1,332 @@
+.buttonbox{position: relative;left: 0;top: 0;right: 0;bottom: 0;    z-index: 1}
+/*右上角地图按钮类*/
+.mapbutton_box{
+    width:60px;
+    position: fixed;
+    right:22px;
+    cursor: pointer;
+    top:91px;
+    padding-left: 12px;
+}
+.mapbutton{
+    position: relative;
+    margin-top:10px;
+    z-index: 0;
+}
+.mapbutton>div{
+    width:58px;
+    height:58px;
+    border:1px solid #afafaf ;
+    background-color:#efefef;
+    cursor: pointer;
+}
+.mapbutton.active>div{
+    border:1px solid #3a81b4;
+}
+.mapbutton_image{
+    background:url(../img/image.png) center; 
+}
+.mapbutton_function>div{
+   background:url(../img/function.png) center; 
+}
+.mapbutton_source{
+    background:url(../img/source.png) center; 
+}
+.mapbutton_topic>div{
+    background:url(../img/topic.png) center; 
+}
+    /*弹出菜单*/
+.function_dropmenu{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: -1;
+}
+.mapbutton_sec{
+    position: absolute;
+    padding-left:12px;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.mapbutton_sec.active div{
+    border:1px solid #3a81b4;
+}
+.mapbutton_sec.active div.changecolor{
+    border:2px solid #21469b;
+}
+.mapbutton_sec>div{
+    width:58px;
+    border:1px solid #afafaf ;
+    background:#efefef;
+    height: 58px;
+}
+        /*功能区划*/
+.mapbutton_sec_ato{
+    top:2px;
+    left: -14px;
+    z-index: -1;
+}
+.mapbutton_sec_ato>div{
+    background:url(../img/ato.png) center; 
+}
+
+.mapbutton_sec_ato.active{
+    left: -82px;
+    top:0;
+}
+.mapbutton_sec_water{
+    top:4px;
+    left: -16px;
+    z-index: -2;
+}
+.mapbutton_sec_water>div{
+    background:url(../img/water.png) center; 
+}
+
+.mapbutton_sec_water.active{
+    left: -152px;
+    top:0;
+}
+.mapbutton_sec_noise{
+    top:6px;
+    left: -18px;
+    z-index: -3;
+}
+.mapbutton_sec_noise>div{
+    background:url(../img/noise.png) center; 
+}
+
+.mapbutton_sec_noise.active{
+    left: -222px;
+    top:0;
+}
+        /*专题图*/
+.mapbutton_sec_nature{
+    top:2px;
+    left: -14px;
+    z-index: -1;
+}
+.mapbutton_sec_nature>div{
+    background:url(../img/nature.png) center; 
+}
+.mapbutton_sec_nature.active{
+    left: -82px;
+    top:0;
+}
+.mapbutton_sec_scene{
+    top:4px;
+    left: -16px;
+    z-index: -2;
+}
+.mapbutton_sec_scene>div{
+    background:url(../img/scene.png) center; 
+}
+.mapbutton_sec_scene.active{
+    left: -152px;
+    top:0;
+}
+.mapbutton_sec_park{
+    top:6px;
+    left: -18px;
+    z-index: -3;
+}
+.mapbutton_sec_park>div{
+    background:url(../img/park.png) center; 
+}
+.mapbutton_sec_park.active{
+    left: -222px;
+    top:0;
+}
+.mapbutton_sec_spring{
+    top:8px;
+    left: -20px;
+    z-index: -4;
+}
+.mapbutton_sec_spring>div{
+    background:url(../img/spring.png) center; 
+}
+.mapbutton_sec_spring.active{
+    left: -292px;
+    top:0;
+}
+.mapbutton_sec_waterhead{
+    top:10px;
+    left: -22px;
+    z-index: -5;
+}
+.mapbutton_sec_waterhead>div{
+    background:url(../img/waterhead.png) center; 
+}
+.mapbutton_sec_waterhead.active{
+    left: -362px;
+    top:0;
+}
+/*图例*/
+.legend{
+    position: fixed;
+    width:200px;
+    height: 300px;
+    overflow: auto;
+    border: 1px solid #839dc5;
+    right:10px;
+    bottom:10px;
+     background: rgba(229,232,239,0.5);
+    text-align: center;
+    padding:10px;
+    color:#666 ;
+}
+.legend.active{
+     width:40px;
+     height: 40px;
+     border:none;
+     padding:0px;
+     overflow: hidden;
+     background: none
+}
+.legend p{
+   color:#fff ;
+   /*box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);*/
+   border-radius: 4px;
+   height: 18px;
+   
+}
+.legend label{
+   text-align:center;
+       text-indent: 0px;
+       
+}
+.legend h4{
+   color:#333 ;
+   font-weight: 600;
+   font-size:16px;
+
+   text-align: left;
+   padding-left: 0;
+
+}
+.legend h5{
+   color:#333 ;
+  
+
+}
+/*行业*/
+.arrow-upb{
+    display:none;
+    background: url("../img/arrow-upb.png") no-repeat center;
+    width: 80px;
+    height: 11px;
+    position: absolute;
+    right: -16px;
+    bottom: -11px;
+    z-index:10
+}
+.IndustryBox{
+    border:1px solid #839dc5;
+    display:none;
+    z-index:9;
+    position: fixed;
+    width:300px;
+    overflow: auto;
+    right:10px;
+    top:53px;
+     background: rgba(229,232,239,0.5);
+    text-align: center;
+    padding:10px;
+    color:#666 ;
+    border-radius:4px
+
+}
+.IndustryBox ul li {
+    line-height:36px;
+    height:36px;
+   text-align:left;
+   display:block
+}
+.IndustryBox li.LiTitle{
+    display:block;
+    height:36px;
+   text-align:left;
+}
+.IndustryBox ul.inbox-nav  li a{
+    line-height:36px;
+     height:36px;
+
+}
+ul.inbox-nav li a span.label {
+    margin-top:7px;
+
+}
+@-moz-document url-prefix() {
+ul.inbox-nav li a span.label {
+    margin-top:-27px;
+
+}
+}
+ul.labels-info li h4 {
+    color: #FFF;
+    background: none repeat scroll 0% 0% #839DC5;
+    font-size: 15px;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    margin:0
+}
+/*左上角功能按钮类*/
+.function_button_box{
+    width:156px;
+    height:32px;
+    background-color: #3a81b4;
+    position: fixed;
+    padding-top:1px;
+    
+    top:102px;
+}
+
+.function_button{
+    width:30px;
+    height:30px;
+    float:left;
+    margin-left: 1px;
+    background-color: #efefef;
+    cursor: pointer;
+    text-align: center;
+}
+.fb_enlarge{
+    background:url(../img/enlarge.png) #fff center no-repeat; 
+}
+.fb_enlarge:hover,.fb_enlarge.active{
+    background:url(../img/enlarge_w.png) #3a81b4 center no-repeat; 
+}
+.fb_reduce{
+  background:url(../img/reduce.png) #fff center no-repeat; 
+}
+.fb_reduce:hover,.fb_reduce.active{
+    background:url(../img/reduce_w.png) #3a81b4 center no-repeat; 
+}
+.fb_tongs{
+    background:url(../img/tongs.png) #fff center no-repeat; 
+}
+.fb_tongs:hover,.fb_tongs.active{
+    background:url(../img/tongs_w.png) #3a81b4 center no-repeat; 
+}
+.fb_distance{
+    background:url(../img/distance.png) #fff center no-repeat; 
+}
+.fb_distance:hover,.fb_distance.active{
+    background:url(../img/distance_w.png) #3a81b4 center no-repeat; 
+}
+.fb_staff{
+    background:url(../img/staff.png) #fff center no-repeat; 
+}
+.fb_staff:hover,.fb_staff.active{
+    background:url(../img/staff_w.png) #3a81b4 center no-repeat; 
+}
+.btn-primary{
+    background:rgba(0,60,136,.5);
+    border-color:#6b8bb4;
+}
+.btn-primary:hover,.btn-primary:focus{
+    background:rgba(0,60,136,.7);
+}

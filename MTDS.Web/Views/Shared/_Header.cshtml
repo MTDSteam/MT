@@ -1,0 +1,79 @@
+﻿<link rel="stylesheet" href="/Css/header.css" />
+<!--styles for validate START-->
+<link rel="stylesheet" href="/Css/bootstrap.css" />
+<link rel="stylesheet" href="/Css/bootstrapValidator.css" />
+<!--styles for validate END-->
+<!--Script for validate START-->
+<script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/bootstrapValidator.js"></script>
+<!--Script for validate END-->
+<!--header start-->
+<header class="header black-bg" style="z-index: 100000; box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(0, 0, 0, 0.05); } ">
+    <!--logo start-->
+    <span class="logo" style="float:left;margin-top:10px;color:white;cursor:default">
+        <img src="/Images/1.png" alt="Alternate Text" style="width:auto;height:45px;margin-left:30px;">
+        <b style="font-family: 'STXINWEI'!important; font-size: 24px; font-weight: normal; ">污染场地风险评估平台 <div style="width:60px;font-size:16px;border-radius:14px;border:2px solid white;display:inline-block;text-align:center;line-height:22px;font-family:'微软雅黑';">V1.0</div></b>
+    </span>
+    <!--logo end-->
+    @*project name start*@
+    <div class="title hrxtitle" onclick="EditPro('@Session["ProjectCardID"]')"><b>当前项目：</b> @((Session["ProjectName"] != "" && Session["ProjectName"] != null) ? Session["ProjectName"].ToString() : "请选择项目")</div>
+    <div style="float: right; background: url(../../images/1_02.png) no-repeat right center; height:60px;min-width:500px;">
+
+        @*project name end*@
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                        欢迎您：<span style="margin-left:0!important;"></span>
+                        <span class="caret" style="margin-left:5px!important;"></span>
+                        <span class="badge bg-theme"></span>
+                    </a>
+                    <ul class="dropdown-menu extended tasks-bar">
+                        <li>
+                            <div class="notify-arrow notify-arrow-green"></div>
+                        </li>
+                        <li>
+                            <p class="green"></p>
+                        </li>
+                        <li>
+                            <a href="/SystemParameter/EnvirQuality">
+                                <div class="task-info">
+
+                                    <div class="desc"><img src="../images/设置1.png" alt="Alternate Text" style="width: 18px; margin-right: 15px;" />系统参数</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#oneModal" data-toggle="modal">
+                                <div class="task-info">
+
+                                    <div class="desc">
+                                        <img src="../images/个人中心1.png" alt="Alternate Text" style="width: 18px; margin-right: 15px;" />个人中心
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#twoModal" data-toggle="modal" onclick="ClearData()">
+                                <div class="task-info">
+                                    <div class="desc"><img src="../images/修改密码.png" alt="Alternate Text" style="width: 18px; margin-right: 15px;" />修改密码</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/login">
+                                <div class="task-info">
+
+                                    <div class="desc"><img src="../images/退出1.png" alt="Alternate Text" style="width: 18px; margin-right: 15px;" />退出登录</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!--  notification end -->
+
+        </div>
+    </div>
+</header>
