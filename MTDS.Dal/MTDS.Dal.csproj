@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\packages\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -45,10 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DapperHelper.cs" />
     <Compile Include="UserDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MTDS.Common\MTDS.Common.csproj">
+      <Project>{d9ac5183-cc6f-4abc-9a01-0a6f5e8bbdcf}</Project>
+      <Name>MTDS.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MTDS.Model\MTDS.Model.csproj">
       <Project>{e4e61ef9-1826-482c-aa5d-00f124dfe9b9}</Project>
       <Name>MTDS.Model</Name>

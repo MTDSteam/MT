@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace MTDS.Model
 {
-   public class Role
+    public class AssetProperty
     {
         /// <summary>
-        /// 角色编号
+        /// 属性编号
         /// </summary>
-        public Guid RoleID { get; set; }
+        public Guid PropertyID { get; set; }
         /// <summary>
-        /// 角色名称
+        /// 属性值
         /// </summary>
-        public string RoleName { get; set; }
+        public string PropertyValue { get; set; }
+        /// <summary>
+        /// 列编号
+        /// </summary>
+        public Guid ColumnID { get; set; }
         public DateTime CreateTime { get; set; }
         public string CreateBy { get; set; }
         public DateTime ModifyTime { get; set; }

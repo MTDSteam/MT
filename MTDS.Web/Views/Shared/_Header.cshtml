@@ -1,7 +1,7 @@
-﻿<link rel="stylesheet" href="/Css/header.css" />
+﻿<link rel="stylesheet" href="/css/header.css" />
 <!--styles for validate START-->
-<link rel="stylesheet" href="/Css/bootstrap.css" />
-<link rel="stylesheet" href="/Css/bootstrapValidator.css" />
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<link rel="stylesheet" href="/css/bootstrapValidator.css" />
 <!--styles for validate END-->
 <!--Script for validate START-->
 <script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
@@ -11,12 +11,12 @@
 <header class="header black-bg" style="z-index: 100000; box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(0, 0, 0, 0.05); } ">
     <!--logo start-->
     <span class="logo" style="float:left;margin-top:10px;color:white;cursor:default">
-        <img src="/Images/1.png" alt="Alternate Text" style="width:auto;height:45px;margin-left:30px;">
-        <b style="font-family: 'STXINWEI'!important; font-size: 24px; font-weight: normal; ">污染场地风险评估平台 <div style="width:60px;font-size:16px;border-radius:14px;border:2px solid white;display:inline-block;text-align:center;line-height:22px;font-family:'微软雅黑';">V1.0</div></b>
+        <img src="/images/1.png"  style="width:auto;height:45px;margin-left:30px;">
+        <b style="font-family: 'STXINWEI'!important; font-size: 24px; font-weight: normal; ">山洪灾害设备管理运维系统</b>
     </span>
     <!--logo end-->
     @*project name start*@
-    <div class="title hrxtitle" onclick="EditPro('@Session["ProjectCardID"]')"><b>当前项目：</b> @((Session["ProjectName"] != "" && Session["ProjectName"] != null) ? Session["ProjectName"].ToString() : "请选择项目")</div>
+    
     <div style="float: right; background: url(../../images/1_02.png) no-repeat right center; height:60px;min-width:500px;">
 
         @*project name end*@

@@ -6,23 +6,25 @@ using System.Threading.Tasks;
 
 namespace MTDS.Model
 {
-   public class Category
+    public class SystemLogs
     {
         /// <summary>
-        /// 分类编号
+        /// 编号
         /// </summary>
-        public System.Guid CategoryId { get; set; }
+        public Guid Id { get; set; }
         /// <summary>
-        /// 分类名称
+        /// Ip地址
         /// </summary>
-        public string CategoryName { get; set; }
+        public string IpAddress { get; set; }
         /// <summary>
-        /// 系统分类编号
+        /// 事件类型
         /// </summary>
-        public Guid SystemCategoryID { get; set; }
+        public int EventType { get; set; }
+        /// <summary>
+        /// 事件内容
+        /// </summary>
+        public string EventMessage { get; set; }
         public DateTime CreateTime { get; set; }
         public string CreateBy { get; set; }
-        public DateTime ModifyTime { get; set; }
-        public string ModifyBy { get; set; }
     }
 }

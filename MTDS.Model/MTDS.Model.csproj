@@ -48,87 +48,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asset.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AssetColumn.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BillColumns.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BillComments.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BillTypes.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Category.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modules.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MTDS.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MTDS.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MTDS.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MTDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MTDS.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Asset.cs" />
+    <Compile Include="AssetColumn.cs" />
+    <Compile Include="AssetProperty.cs" />
+    <Compile Include="BillColumns.cs" />
+    <Compile Include="BillComments.cs" />
+    <Compile Include="BillTypes.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="Modules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RoleRights.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubAsset.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SystemCategory.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserRoles.cs">
-      <DependentUpon>MTDS.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <EntityDeploy Include="MTDS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MTDS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="MTDS.edmx.diagram">
-      <DependentUpon>MTDS.edmx</DependentUpon>
-    </None>
-    <None Include="packages.config" />
+    <Compile Include="Role.cs" />
+    <Compile Include="RoleRights.cs" />
+    <Compile Include="SubAsset.cs" />
+    <Compile Include="SystemCategory.cs" />
+    <Compile Include="SystemLogs.cs" />
+    <Compile Include="UserRoles.cs" />
+    <Compile Include="Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MTDS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MTDS.edmx</DependentUpon>
-      <LastGenOutput>MTDS.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="MTDS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MTDS.edmx</DependentUpon>
-      <LastGenOutput>MTDS.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
