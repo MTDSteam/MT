@@ -13,6 +13,8 @@ namespace MTDS.Web.Controllers
     {
         private UserBll uBll=new UserBll();
 
+        private UserBll uBll = new UserBll();
+
         public ActionResult Index()
         {
             return View();
