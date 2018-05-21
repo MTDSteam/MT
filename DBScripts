@@ -412,3 +412,8 @@ REFERENCES [dbo].[UserProfile] ([UserId])
 GO
 ALTER TABLE [dbo].[webpages_UsersInRoles] CHECK CONSTRAINT [fk_UserId]
 GO
+
+
+------5.21号 添加表，修改表 edit by nili 
+EXEC sp_rename 'user', 'users'
+---insert into users .....
