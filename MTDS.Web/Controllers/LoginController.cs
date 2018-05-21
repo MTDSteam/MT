@@ -12,6 +12,8 @@ namespace MTDS.Web.Controllers
         //
         // GET: /Login/
 
+        private UserBll uBll = new UserBll();
+
         public ActionResult Index()
         {
             return View();
