@@ -1,25 +1,59 @@
 ﻿@{
-    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "设备管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/css/ProList.css" rel="stylesheet" />
+<link href="~/css/lanrenzhijia.css" rel="stylesheet" />
+<link href="/Css/stylep.css" rel="stylesheet" />
+<script src="/Scripts/js.js"></script>
+<style>
+    form {
+        display: inline-block !important;
+        float: right;
+    }
+
+    label {
+        margin-top: 0px !important;
+    }
+</style>
 
 
-<table class="table table-striped table-hover table-bordered edit_add tb-h" id="tbPro" style="margin-top: 10px;">
-    <thead>
-        <tr>
-            <th style="width:7%;" class="tab-center">设备编号</th>
-            <th style="width:12%;" class="tab-center">设备名称</th>
-            <th style="width:12%;" class="tab-center">场地名称</th>
-            <th style="width:20%;" class="tab-center">用地类别</th>
-            <th style="width:10%;" class="tab-center">场地类别</th>
-            @*<th style="width:10%;" class="tab-center">拐点坐标</th>*@
-            <th style="width:10%;" class="tab-center">评估进度</th>
-            <th style="width:9%;" class="tab-center">操作</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+<section id="main-content">
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 60px;">
+            <ul id="tabs" class="mtab">
+                <li class="current">
+                    <a href="#">设备列表</a>
+                </li>
+
+            </ul>
+
+            <div class="modal-header">
+                <div class="btn_float" style=" margin-left:15px;">
+                    <button class="btn btn-primary choice_en" type="button" id="btnAdd">添加设备</button>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <table class="table table-striped table-hover table-bordered edit_add tb-h" id="tbPro" style="margin-top: 10px;">
+                <thead>
+                    <tr>
+                        <th style="width:7%;" class="tab-center">设备名称</th>
+                        <th style="width:12%;" class="tab-center">账号</th>
+                        <th style="width:12%;" class="tab-center">Email</th>
+                        <th style="width:20%;" class="tab-center">手机</th>
+                        <th style="width:10%;" class="tab-center">详细地址</th>
+                        <th style="width:10%;" class="tab-center">创建时间</th>
+                        <th style="width:9%;" class="tab-center">操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div class="col-sm-12 page_div" style="">
+                <span class="col-sm-2 page_total" style="white-space:nowrap">共有数据：<strong id="userCount"></strong> 条</span>
+                <div id="NavLink" class="paginator pd-20 col-sm-10" style="text-align: center"></div>
+            </div>
+        </div>
+    </div>
+</section>

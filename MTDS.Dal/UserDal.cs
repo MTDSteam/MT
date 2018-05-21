@@ -18,7 +18,7 @@ namespace MTDS.Dal
         {
             using (var conn = DapperHelper.CreateConnection())
             {
-                string sql = "Select * from User";
+                string sql = "Select * from Users";
                 return conn.Query<Users>(sql).ToList();
             }
         }
@@ -32,7 +32,7 @@ namespace MTDS.Dal
             using (var conn = DapperHelper.CreateConnection())
             {
                 string sql =
-                    "Insert into User(UserID, loginName, username, password, email, mobile, telephone, provinceID, AreaID, CountyID, address, remark, lastlogintime, ParentID, CreateTime, CreateBy, ModifyTime, ModifyBy) values(@UserID, @loginName, @username, @password, @email, @mobile, @telephone, @provinceID, @AreaID, @CountyID, @address, @remark, @lastlogintime, @ParentID, @CreateTime, @CreateBy, @ModifyTime, @ModifyBy)";
+                    "Insert into Users(UserID, loginName, username, password, email, mobile, telephone, provinceID, AreaID, CountyID, address, remark, lastlogintime, ParentID, CreateTime, CreateBy, ModifyTime, ModifyBy) values(@UserID, @loginName, @username, @password, @email, @mobile, @telephone, @provinceID, @AreaID, @CountyID, @address, @remark, @lastlogintime, @ParentID, @CreateTime, @CreateBy, @ModifyTime, @ModifyBy)";
                 return conn.Execute(sql, model);
             }
         }
@@ -46,7 +46,7 @@ namespace MTDS.Dal
             using (var conn = DapperHelper.CreateConnection())
             {
                 string sql =
-                    "Update user set loginName=@loginName,username=@username,email=@email,mobile=@mobile,telephone=@telephone," +
+                    "Update users set loginName=@loginName,username=@username,email=@email,mobile=@mobile,telephone=@telephone," +
                     "CreateTime=@CreateTime,CreateBy=@CreateBy,ModifyTime=@ModifyTime," +
                     "ModifyBy=@ModifyBy where UserID=@UserID";
                 return conn.Execute(sql, model);
@@ -61,7 +61,7 @@ namespace MTDS.Dal
         {
             using (var conn = DapperHelper.CreateConnection())
             {
-                string sql = "Delete from User where UserId=@UserId";
+                string sql = "Delete from Users where UserId=@UserId";
                 return conn.Execute(sql, new { UserId = userId });
             }
         }
@@ -74,7 +74,7 @@ namespace MTDS.Dal
         {
             using (var conn = DapperHelper.CreateConnection())
             {
-                string sql = "Select * from User where Id='" + userId + "'";
+                string sql = "Select * from Users where Id='" + userId + "'";
                 return conn.Query<Users>(sql).SingleOrDefault();
             }
         }
@@ -88,7 +88,7 @@ namespace MTDS.Dal
         {
             using (var conn = DapperHelper.CreateConnection())
             {
-                string sql = "Select * from User where loginName=@loginName";
+                string sql = "Select * from Users where loginName='"+account+"'";
                 return conn.Query<Users>(sql).SingleOrDefault();
             }
         }

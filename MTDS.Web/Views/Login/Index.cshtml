@@ -59,14 +59,19 @@
             data: { userName: $("#userName").val(), password: $("#password").val() },
             dataType: "json",
             success: function (data) {
-                if (data == "0") {
-                    layer.msg('用户不存在!', { icon: 2, time: 1000 });
-                } else if (data == "1") {
-                    layer.msg('密码不正确!', { icon: 2, time: 1000 });
+                //if (data == "0") {
+                //    layer.msg('用户不存在!', { icon: 2, time: 1000 });
+                //} else if (data == "1") {
+                //    layer.msg('密码不正确!', { icon: 2, time: 1000 });
+                //} else {
+                //    //登录成功
+                //    location.href = "/Project/ProList";
+                //    //$(".close").click();
+                //}
+                if (data == "success") {
+                    location.href = "/Home/Home";
                 } else {
-                    //登录成功
-                    location.href = "/Project/ProList";
-                    //$(".close").click();
+                    layer.msg(data, { icon: 2, time: 2000 });
                 }
             }
         });
