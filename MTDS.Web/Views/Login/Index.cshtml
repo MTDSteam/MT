@@ -4,7 +4,7 @@
 
 
 <link href="~/css/main.css" rel="stylesheet" />
-
+<link href="~/Scripts/layer/1.9.3/skin/layer.css" rel="stylesheet" />
 
 <div class="login">
     <div class="box png">
@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-   
+
     <div class="footer"></div>
 </div>
 
@@ -31,6 +31,7 @@
 
 <script src="~/js/fun.base.js"></script>
 <script src="~/js/script.js"></script>
+<script src="~/Scripts/layer.js"></script>
 
 <!--[if IE 6]>
     <script src="~/js/DD_belatedPNG.js" type="text/javascript"></script>
@@ -38,18 +39,18 @@
 <![endif]-->
 
 <script type="text/javascript">
-    $("#btnLogin").click(function() {
+    $("#btnLogin").click(function () {
 
         var userName = $("#userName").val();
         var password = $("#password").val();
 
         if (userName == "" || userName == null) {
-            alert("用户名不能为空");
+            layer.msg("用户名不能为 空", { icon: 2, time: 2000 });
             $("#userName").focus();
             return;
         }
         if (password == "" || password == null) {
-            alert("密码不能为空");
+            layer.msg("密码不能为空", { icon: 2, time: 2000 });
             $("#password").focus();
         }
 
@@ -60,5 +61,5 @@
 
 <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
     <p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
-   
+
 </div>

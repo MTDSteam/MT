@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTDS.Common", "MTDS.Common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTDS.Web", "MTDS.Web\MTDS.Web.csproj", "{30DEAFA6-CE50-42AD-ACF1-F75FBAB8443A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTDS.BLL", "MTDS.BLL\MTDS.BLL.csproj", "{3C09FBC0-308E-4C80-B206-55CF428F872A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{30DEAFA6-CE50-42AD-ACF1-F75FBAB8443A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30DEAFA6-CE50-42AD-ACF1-F75FBAB8443A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30DEAFA6-CE50-42AD-ACF1-F75FBAB8443A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C09FBC0-308E-4C80-B206-55CF428F872A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C09FBC0-308E-4C80-B206-55CF428F872A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C09FBC0-308E-4C80-B206-55CF428F872A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C09FBC0-308E-4C80-B206-55CF428F872A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,14 +6,15 @@ using System.Web.Mvc;
 
 namespace MTDS.Web.Controllers
 {
-    public class HomeController : Controller
+    public class UserController : Controller
     {
-       
-        public ActionResult Home()
+        //
+        // GET: /User/
+
+        public ActionResult Index()
         {
-            
-            return View("Home");
+            return View();
         }
-     
+
     }
 }
