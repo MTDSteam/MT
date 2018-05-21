@@ -8,7 +8,7 @@ using MTDS.Model;
 
 namespace MTDS.Dal
 {
-   public class UserDal
+    public class UserDal
     {
         /// <summary>
         /// 获取全部数据
@@ -29,7 +29,7 @@ namespace MTDS.Dal
         /// <returns></returns>
         public int Insert(Users model)
         {
-            using (var conn=DapperHelper.CreateConnection())
+            using (var conn = DapperHelper.CreateConnection())
             {
                 string sql =
                     "Insert into User(UserID, loginName, username, password, email, mobile, telephone, provinceID, AreaID, CountyID, address, remark, lastlogintime, ParentID, CreateTime, CreateBy, ModifyTime, ModifyBy) values(@UserID, @loginName, @username, @password, @email, @mobile, @telephone, @provinceID, @AreaID, @CountyID, @address, @remark, @lastlogintime, @ParentID, @CreateTime, @CreateBy, @ModifyTime, @ModifyBy)";
@@ -43,7 +43,7 @@ namespace MTDS.Dal
         /// <returns></returns>
         public int Update(Users model)
         {
-            using (var conn=DapperHelper.CreateConnection())
+            using (var conn = DapperHelper.CreateConnection())
             {
                 string sql =
                     "Update user set loginName=@loginName,username=@username,email=@email,mobile=@mobile,telephone=@telephone," +
@@ -59,10 +59,10 @@ namespace MTDS.Dal
         /// <returns></returns>
         public int Delete(Guid userId)
         {
-            using (var conn=DapperHelper.CreateConnection())
+            using (var conn = DapperHelper.CreateConnection())
             {
                 string sql = "Delete from User where UserId=@UserId";
-                return conn.Execute(sql, new {UserId = userId});
+                return conn.Execute(sql, new { UserId = userId });
             }
         }
         /// <summary>
@@ -79,6 +79,20 @@ namespace MTDS.Dal
             }
         }
 
-       
+        /// <summary>
+        /// 根据账号获取数据
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        public Users GetByAccount(string account)
+        {
+            using (var conn = DapperHelper.CreateConnection())
+            {
+                string sql = "Select * from User where loginName=@loginName";
+                return conn.Query<Users>(sql).SingleOrDefault();
+            }
+        }
+
+
     }
 }
