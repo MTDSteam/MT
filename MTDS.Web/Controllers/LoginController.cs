@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MTDS.BLL;
 using MTDS.Common;
 
 namespace MTDS.Web.Controllers
 {
     public class LoginController : Controller
     {
-        //
-        // GET: /Login/
+        private UserBll uBll=new UserBll();
 
         public ActionResult Index()
         {
@@ -32,7 +32,6 @@ namespace MTDS.Web.Controllers
 
                 if (model == null)
                 {
-                    //return Json("用户不存在", JsonRequestBehavior.AllowGet);
                     resultMsg = "用户不存在";
                 }
                 else

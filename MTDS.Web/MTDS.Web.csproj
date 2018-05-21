@@ -589,6 +589,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MTDS.BLL\MTDS.BLL.csproj">
+      <Project>{3c09fbc0-308e-4c80-b206-55cf428f872a}</Project>
+      <Name>MTDS.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MTDS.Common\MTDS.Common.csproj">
       <Project>{d9ac5183-cc6f-4abc-9a01-0a6f5e8bbdcf}</Project>
       <Name>MTDS.Common</Name>
