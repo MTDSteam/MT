@@ -13,6 +13,8 @@
 *.jar
 *.war
 *.ear
+*.suo
+*.cache
 *.zip
 *.tar.gz
 *.rar
