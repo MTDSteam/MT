@@ -416,4 +416,26 @@ GO
 
 ------5.21号 添加表，修改表 edit by nili 
 EXEC sp_rename 'user', 'users'
----insert into users .....
+------5.22 添加测试用户，密码为123456
+insert into users(userid
+      ,[loginName]
+      ,[username]
+      ,[password]
+      ,[email]
+      ,[mobile]
+      ,[telephone]
+      ,[provinceID]
+      ,[AreaID]
+      ,[CountyID]
+      ,[address]
+      ,[remark]
+      ,[lastlogintime]
+      ,[ParentID]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy])
+	  values 
+(NEWID(),'test','test','123456','wleide@qq.com','18521593997',1,1,1,1,'test','',getdate(),null,getdate(),'test',getdate(),'test')
+
+update Users set password='E10ADC3949BA59ABBE56E057F20F883E'
