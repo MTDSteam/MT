@@ -366,11 +366,11 @@ ul.sidebar-menu li a:hover span.cdfx,ul.sidebar-menu li a.current span.cdfx{
     background-size:20px;  
 }
 ul.sidebar-menu li a span.xdfx{
-    background:url(../../Images/xdfx.png) no-repeat 30px center;
+    background:url(../../Images/username.png) no-repeat 30px center;
     background-size:20px;  
 }
 ul.sidebar-menu li a:hover span.xdfx,ul.sidebar-menu li a.current span.xdfx{    
-    background:url(../../Images/xdfx_white.png) no-repeat 30px center;
+    background:url(../../Images/username.png) no-repeat 30px center;
     background-size:20px;  
 }
 ul.sidebar-menu li a span.whsb{
