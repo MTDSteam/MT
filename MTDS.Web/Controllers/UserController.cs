@@ -19,10 +19,10 @@ namespace MTDS.Web.Controllers
         {
             return View();
         }
-
+       
         public string GetList()
         {
-            var pageIndex = Convert.ToInt32(Request.Form["pageIndex"]);
+            var pageIndex = Convert.ToInt32(Request["id1"]);
             var list = uBll.GetList();
 
             if (list.Count() >= 0)
@@ -98,6 +98,36 @@ namespace MTDS.Web.Controllers
             }
 
             return Json(resultMsg, JsonRequestBehavior.AllowGet);
+        }
+
+        //删除
+        public string Delete()
+        {
+            var id = Request.Form["uid"];
+            var rst = uBll.Delete(id.ToGuid());
+
+
+            if (rst > 0)
+                return "success";
+            else
+                return "error";
+        }
+        /// <summary>
+        /// 获取单个信息
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetSingle()
+        {
+            var id = Request.QueryString["uid"];
+            var model = uBll.GetById(id.ToGuid());
+            if (model != null)
+            {
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("error", JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

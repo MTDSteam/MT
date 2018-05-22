@@ -9,3 +9,13 @@ F:\Projects\MTDS\MTDS.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
 F:\Projects\MTDS\MTDS.Model\obj\Debug\MTDS.Model.csprojResolveAssemblyReference.cache
 F:\Projects\MTDS\MTDS.Model\obj\Debug\MTDS.Model.dll
 F:\Projects\MTDS\MTDS.Model\obj\Debug\MTDS.Model.pdb
+G:\MT\MTDS.Model\bin\Debug\MTDS.Model.dll
+G:\MT\MTDS.Model\bin\Debug\MTDS.Model.pdb
+G:\MT\MTDS.Model\bin\Debug\EntityFramework.dll
+G:\MT\MTDS.Model\bin\Debug\EntityFramework.SqlServer.dll
+G:\MT\MTDS.Model\bin\Debug\EntityFramework.xml
+G:\MT\MTDS.Model\bin\Debug\EntityFramework.SqlServer.xml
+G:\MT\MTDS.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+G:\MT\MTDS.Model\obj\Debug\MTDS.Model.dll
+G:\MT\MTDS.Model\obj\Debug\MTDS.Model.pdb
+G:\MT\MTDS.Model\obj\Debug\MTDS.Model.csprojResolveAssemblyReference.cache

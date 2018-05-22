@@ -6,3 +6,11 @@ F:\Projects\MTDS\MTDS.Common\bin\Debug\ICSharpCode.SharpZipLib.dll
 F:\Projects\MTDS\MTDS.Common\bin\Debug\Newtonsoft.Json.dll
 F:\Projects\MTDS\MTDS.Common\obj\Debug\MTDS.Common.dll
 F:\Projects\MTDS\MTDS.Common\obj\Debug\MTDS.Common.pdb
+G:\MT\MTDS.Common\bin\Debug\MTDS.Common.dll
+G:\MT\MTDS.Common\bin\Debug\MTDS.Common.pdb
+G:\MT\MTDS.Common\bin\Debug\ChnCharInfo.dll
+G:\MT\MTDS.Common\bin\Debug\ICSharpCode.SharpZipLib.dll
+G:\MT\MTDS.Common\bin\Debug\Newtonsoft.Json.dll
+G:\MT\MTDS.Common\obj\Debug\MTDS.Common.dll
+G:\MT\MTDS.Common\obj\Debug\MTDS.Common.pdb
+G:\MT\MTDS.Common\obj\Debug\MTDS.Common.csprojResolveAssemblyReference.cache
