@@ -5,11 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MTDS.BLL;
 using MTDS.Common;
-<<<<<<< HEAD
 using MTDS.Model;
-=======
-using MTDS.BLL;
->>>>>>> 148626fde2f370fa40f71a484d1920dd133ec650
 
 namespace MTDS.Web.Controllers
 {
@@ -17,7 +13,6 @@ namespace MTDS.Web.Controllers
     {
         private UserBll uBll=new UserBll();
 
-        private UserBll uBll = new UserBll();
 
         public ActionResult Index()
         {
