@@ -31,23 +31,25 @@
 
             <div class="modal-header">
                 <div class="btn_float" style=" margin-left:15px;">
-                    <button class="btn btn-primary choice_en" type="button" id="btnAdd">添加用户</button>
+                    <button class="btn btn-primary green" data-toggle="modal" href="#mymodal" id="btnAdd">添加用户</button>
                 </div>
                 <div style="clear:both;"></div>
             </div>
             <table class="table table-striped table-hover table-bordered edit_add tb-h" id="tbPro" style="margin-top: 10px;">
                 <thead>
-                    <tr>
-                        <th style="width:7%;" class="tab-center">用户名</th>
-                        <th style="width:12%;" class="tab-center">账号</th>
-                        <th style="width:12%;" class="tab-center">Email</th>
-                        <th style="width:20%;" class="tab-center">手机</th>
-                        <th style="width:10%;" class="tab-center">详细地址</th>
-                        <th style="width:10%;" class="tab-center">创建时间</th>
-                        <th style="width:9%;" class="tab-center">操作</th>
-                    </tr>
+                <tr>
+                    <th style="width:7%;" class="tab-center">用户名</th>
+                    <th style="width:12%;" class="tab-center">账号</th>
+                    <th style="width:12%;" class="tab-center">Email</th>
+                    <th style="width:20%;" class="tab-center">手机</th>
+                    <th style="width:10%;" class="tab-center">详细地址</th>
+                    <th style="width:10%;" class="tab-center">创建时间</th>
+                    <th style="width:9%;" class="tab-center">操作</th>
+                </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="tbody">
+
+                </tbody>
             </table>
 
             <div class="col-sm-12 page_div" style="">
@@ -57,3 +59,193 @@
         </div>
     </div>
 </section>
+
+
+
+<div class="modal fade" id="mymodal" style="overflow: auto;margin-top: 50px" >
+    <div id="myDiv" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #52acee">
+                <button type="button" class="close modal_out" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="text_title">添加用户</h4>
+            </div>
+            <div class="modal-body" style="height: 320px;">
+
+                <form id="form_regist" class="with_validate">
+                    <input type="hidden" id="HidUId" name="HidUId" runat="server" />
+                    <div class="clearfix">
+
+                        <div class="col-sm-12 detail_form">
+                            <label class="control-label col-sm-3" style="width: 25%">用户姓名:</label>
+                            <div class="form-group  col-sm-9" style="padding: 0; width: 75%">
+                                <input  type="text" class="form-control" name="txtRealName" id="txtRealName"/>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 detail_form">
+                            <label class="control-label col-sm-4" style="width: 20%">登录名:</label>
+                            <div class="form-group  col-sm-8" style="padding: 0; width: 80%">
+                                <input type="text" class="form-control" name="txtloginName" id="txtloginName" required="required" data-bv-notempty-message="此项为必填项" />
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="control-label col-sm-4" style="width: 20%">密码:</label>
+                            <div class="form-group  col-sm-8" style="padding: 0; width: 80%">
+                                <input type="password" class="form-control" name="txtPassword" id="txtPassword" required="required" data-bv-notempty-message="此项为必填项" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 detail_form">
+                            <label class="control-label col-sm-4" style="width: 20%">手机:</label>
+                            <div class="form-group  col-sm-8" style="padding: 0; width: 80%">
+                                <input type="text" class="form-control" name="txtTel" id="txtTel" required="required" data-bv-notempty-message="此项为必填项" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 detail_form">
+                            <label class="control-label col-sm-4" style="width: 20%">Email:</label>
+                            <div class="form-group  col-sm-8" style="padding: 0; width: 80%">
+                                <input type="text" class="form-control" name="txtEmail" id="txtEmail" required="required" data-bv-notempty-message="此项为必填项" />
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12 detail_form">
+                            <label class="control-label col-sm-4" style="width: 25%">详细地址:</label>
+                            <div class="form-group  col-sm-8" style="padding: 0; width: 75%">
+                                <input type="text" class="form-control" name="txtAddress" id="txtAddress" required="required" data-bv-notempty-message="此项为必填项" />
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer" style="margin-top: 0">
+                <button class="btn btn-primary choice_en" type="button" id="BtnSubmit" onclick="SaveInfo()">保存</button>
+                <button data-dismiss="modal" class="btn btn-primary close_modal  modal_out" type="button" id="BtnCancel">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        initData(1);
+    });
+    //初始化数据
+    function initData(pageIndex) {
+        $.getJSON("../User/GetList", { pageIndex: pageIndex }, function (data) {
+            if (data != "error") {
+                var str = "";
+                $("#tbody").html("");
+                for (var i = 0; i < data.T.length; i++) {
+                    str += "<tr><td>" + data.T[i].Username + "</td>";
+                    str += "<td>" + data.T[i].LoginName + "</td>";
+                    str += "<td>" + data.T[i].Email + "</td>";
+                    str += "<td>" + data.T[i].Mobile + "</td>";
+                    str += "<td>" + data.T[i].Address + "</td>";
+                    str += "<td>" + data.T[i].CreateTime + "</td>";  //质保期限
+
+                    str += "<td><a class=\"edit more\" data-toggle=\"modal\" href=\"#mymodal\" onclick=\"Edit('" + data.T[i].UserID + "')\"><span class=\"label label-success \">编辑</span></a>";
+                    str += "<a class=\"edit more\"  href=\"javascript:;\" onclick=\"Delete(this,'" + data.T[i].UserID + "')\"><span class=\"label label-success \">删除</span></a>";
+                    str += "</td></tr>";
+                }
+                $("#tbody").append(str);
+                $("#userCount").html(data.Total);
+                $("#NavLink").html(data.NavPageStr);  //导航链接
+                bindNavLinkEvent();
+            } else {
+                $("#tbody").html("");
+                $("#userCount").html(0);
+            }
+        });
+    }
+
+
+    //保存
+    function SaveInfo() {
+       $.ajax({
+           type: "POST",
+           url: '../User/Register',
+           data: $("#form_regist").serialize(),
+
+           error: function (request) {
+               layer.msg('保存失败!', { icon: 2, time: 1000 });
+           },
+           success: function (data) {
+               if (data == "success") {
+                   layer.msg('保存成功!', { icon: 1, time: 1000 });
+                   initData(1);
+               } else
+                   layer.msg('保存失败!', { icon: 2, time: 1000 });
+
+            
+               $(".modal_out").click();
+           }
+
+       });
+    }
+
+
+    //分页标签点击    //分页标签格式如下：<a class="pageLink" href="?pageIndex=2&pageSize=10">2</a>
+    function bindNavLinkEvent() {
+        //取得分页标签
+        $(".pageLink").click(function () {
+            //拿到href值
+            var href = $(this).attr("href");
+            //得到href中pageIndex的数据
+            var pageIndex = href.substr(href.lastIndexOf('?') + 1).substring(href.indexOf('='), href.indexOf('&') - 1);
+            //初始化表格
+            initData(pageIndex);
+            return false;
+        });
+    }
+    //删除
+    function Delete(obj, id) {
+        //layer.msg(id);
+        layer.confirm("确定要删除吗?", function () {
+            $.post("../Handle/EquipmentHandler.ashx?action=delete", { pid: id }, function (data) {
+                if (data == "ok") {
+                    $(obj).parents("tr").remove();
+                    layer.msg("删除成功", { icon: 1, time: 1000 });
+                } else {
+                    layer.msg("删除失败", { icon: 2, time: 2000 });
+                }
+                initData(1);
+            });
+        });
+    }
+
+    //编辑
+    function Edit(id) {
+        $.getJSON("../Handle/EquipmentHandler.ashx?action=edit", { pid: id }, function (data) {
+            if (data != "error") {
+                $("#HidUId").val(id);  //编号Id
+                $("#txtCategory").val(data.Category); //设备类型
+                $("#txtName").val(data.Name);
+                $("#txtBrand").val(data.Brand);
+                $("#txtType").val(data.Type);
+                $("#txtCount").val(data.Count);
+                $("#txtMoney").val(data.Money);
+
+                if (data.BuyTime != null || data.BuyTime != "") {
+                    var str = data.BuyTime.split('T');
+                    $("#txtDate").val(str[0]);
+                }
+
+                if (data.QualityTime != null || data.QualityTime != null) {
+                    var str1 = data.QualityTime.split('T');
+                    $("#txtQuality").val(str1[0]);
+                }
+                $("#txtProperty").val(data.Property);
+                $("#txtRemark").val(data.Remark);
+            }
+        });
+    }
+
+
+</script>

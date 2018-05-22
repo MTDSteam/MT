@@ -51,11 +51,12 @@
         if (password == "" || password == null) {
             layer.msg("密码不能为空", { icon: 2, time: 2000 });
             $("#password").focus();
+            return;
         }
 
         $.ajax({
             type: "POST",
-            url: "/Login/Login",
+            url: "../Login/Login",
             data: { userName: $("#userName").val(), password: $("#password").val() },
             dataType: "json",
             success: function (data) {
