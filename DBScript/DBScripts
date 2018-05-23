@@ -492,3 +492,101 @@ EXEC sys.sp_addextendedproperty @name=N'说明', @value=N'数据字典表' , @le
 GO
 
 
+----5.23号 删除表 SystemCategory，Category
+drop table Category
+
+drop table SystemCategory
+
+drop table AssetColumn
+
+drop table AssetProperty
+
+drop table Asset
+
+drop table SubAsset
+
+
+----5.23号 添加表 AssetType,AssetProperty,Assets
+
+USE [MTDS]
+GO
+
+/****** Object:  Table [dbo].[AssetType]    Script Date: 2018/5/23 22:21:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[AssetType](
+	[Id] [uniqueidentifier] NOT NULL,
+	[DictionaryId] [uniqueidentifier] NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[ParentID] [uniqueidentifier] NOT NULL,
+	[isAssetName] [smallint] NULL,
+	[CreateTime] [datetime] NULL,
+	[CreateBy] [uniqueidentifier] NULL,
+	[ModifyTime] [datetime] NULL,
+	[ModifyBy] [uniqueidentifier] NULL,
+ CONSTRAINT [PK_AssetType] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [MTDS]
+GOUSE [MTDS]
+GO
+
+/****** Object:  Table [dbo].[Assets]    Script Date: 2018/5/23 22:27:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Assets](
+	[Id] [uniqueidentifier] NOT NULL,
+	[AssetTypeId] [uniqueidentifier] NOT NULL,
+	[propertyID] [uniqueidentifier] NOT NULL,
+	[propertyValue] [varchar](200) NULL,
+	[CreateTime] [datetime] NULL,
+	[CreateBy] [uniqueidentifier] NULL,
+	[ModifyTime] [datetime] NULL,
+	[ModifyBy] [uniqueidentifier] NULL,
+ CONSTRAINT [PK_Assets] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+/****** Object:  Table [dbo].[AssetProperty]    Script Date: 2018/5/23 22:24:27 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[AssetProperty](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[DictionaryId] [uniqueidentifier] NOT NULL,
+	[AssetTypeId] [uniqueidentifier] NOT NULL,
+	[CreateTime] [datetime] NULL,
+	[CreateBy] [uniqueidentifier] NULL,
+	[ModifyTime] [datetime] NULL,
+	[ModifyBy] [uniqueidentifier] NULL,
+ CONSTRAINT [PK_AssetProperty] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
