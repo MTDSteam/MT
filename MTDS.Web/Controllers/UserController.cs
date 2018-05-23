@@ -113,7 +113,7 @@ namespace MTDS.Web.Controllers
                 return "error";
         }
         /// <summary>
-        /// 获取单个信息
+        /// 获取单个用户信息
         /// </summary>
         /// <returns></returns>
         public JsonResult GetSingle()
