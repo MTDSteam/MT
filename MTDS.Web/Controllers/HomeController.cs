@@ -53,7 +53,7 @@ namespace MTDS.Web.Controllers
             mod3.Code = "10.02.01";
             mod3.FullName = "类别维护";
             mod3.Icon = "house.png";
-            mod3.Location = "/CommonModule/Company/Index";//需修改
+            mod3.Location = "/User/Index";//需修改
             mod3.Target = "iframe";
             mod3.Level = 2;
 

@@ -49,18 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Asset.cs" />
-    <Compile Include="AssetColumn.cs" />
-    <Compile Include="AssetProperty.cs" />
+    <Compile Include="AssetType.cs" />
     <Compile Include="BillColumns.cs" />
     <Compile Include="BillComments.cs" />
     <Compile Include="BillTypes.cs" />
-    <Compile Include="Category.cs" />
+    <Compile Include="Dictionary.cs" />
     <Compile Include="Modules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="RoleRights.cs" />
-    <Compile Include="SubAsset.cs" />
-    <Compile Include="SystemCategory.cs" />
     <Compile Include="SystemLogs.cs" />
     <Compile Include="UserRoles.cs" />
     <Compile Include="Users.cs" />

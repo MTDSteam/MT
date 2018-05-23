@@ -180,11 +180,11 @@
                if (data == "success") {
                    layer.msg('保存成功!', { icon: 1, time: 1000 });
                    initData(1);
-               } else
+                   $(".modal_out").click();
+               } else {
                    layer.msg('保存失败!', { icon: 2, time: 1000 });
-
-            
-               $(".modal_out").click();
+               }
+                 
            }
 
        });
@@ -225,24 +225,12 @@
         $.getJSON("../User/GetSingle", { uid: id }, function (data) {
             if (data != "error") {
                 $("#HidUId").val(id);  //编号Id
-                $("#txtCategory").val(data.Category); //设备类型
-                $("#txtName").val(data.Name);
-                $("#txtBrand").val(data.Brand);
-                $("#txtType").val(data.Type);
-                $("#txtCount").val(data.Count);
-                $("#txtMoney").val(data.Money);
-
-                if (data.BuyTime != null || data.BuyTime != "") {
-                    var str = data.BuyTime.split('T');
-                    $("#txtDate").val(str[0]);
-                }
-
-                if (data.QualityTime != null || data.QualityTime != null) {
-                    var str1 = data.QualityTime.split('T');
-                    $("#txtQuality").val(str1[0]);
-                }
-                $("#txtProperty").val(data.Property);
-                $("#txtRemark").val(data.Remark);
+                $("#txtRealName").val(data.Username); //用户名
+                $("#txtloginName").val(data.LoginName);  //登录名
+                $("#txtTel").val(data.Mobile);
+                $("#txtEmail").val(data.Email);
+                $("#txtAddress").val(data.Address);
+           
             }
         });
     }

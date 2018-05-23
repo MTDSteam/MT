@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace MTDS.Model
 {
-   public class AssetProperty
+    /// <summary>
+    /// 设备分类
+    /// </summary>
+   public class AssetType
     {
        public Guid Id { get; set; }
-       public string Name { get; set; }
        public Guid DictionaryId { get; set; }
-       public Guid AssetTypeId { get; set; }
+       public string Name { get; set; }
+       public Guid ParentID { get; set; }
+       public short isAssetName { get; set; }
        public DateTime CreateTime { get; set; }
        public string CreateBy { get; set; }
        public DateTime ModifyTime { get; set; }

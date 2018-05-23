@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "属性维护";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content">
+
+    <section class="wrapper site-min-height">
+        <div class="col-md-5">
+            <!-- START PANEL -->
+            <div class="panel ogr_add">
+                <header class="panel-heading add_padding">
+                    <span class="label label-primary">
+                        设备类型
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <div id="menu"></div>
+                </div>
+            </div>
+            <!-- END PANEL -->
+        </div>
+
+
+        <div class="col-md-7" id="floatDiv">
+            <div class="panel">
+                <header class="panel-heading add_padding">
+                    <span class="label label-primary">
+                        设备属性维护
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <form method="post" name="" id="frmProperty" class="with_validate">
+                        
+                        @if (true)  //如果有属性值,默认加载出来
+                        {
+                            <div class="form-group col-sm-12 detail_form">
+                                <label class="control-label col-sm-2">
+                                    属性名称：
+                                </label>
+                                <div class=" col-sm-10">
+                                    <input type="text" class="form-control" placeholder="请输入属性名称"  name="p1">
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            
+                        }
+
+                     
+                        
+                        
+                        <img src="/Images/btn_add.png" id="img_add" title="添加属性" style="width: 2rem; cursor: pointer; margin-left: 5px;" onclick=" AddProperty() ">
+                        <img src="/Images/btn_del.png" id="img_del" title="删除拐点坐标" style="width: 2rem; cursor: pointer; margin-left: 0px;" onclick=" DelProperty() ">
+                    </form>
+
+
+                </div>
+                
+                <div class="btn-group">
+                    <button id="btnSave" class="btn btn-primary">保存</button>
+                    <button id="btnCancel" class="btn btn-default">返回</button>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+</section>
+
+<script type="text/javascript">
+    //增加属性文本框
+    function AddProperty() {
+        var inputHtml = "<div class=\"form-group col-sm-12 detail_form\">" +
+            "<label class=\"control-label col-sm-2\">属性名称:</label><div class=\" col-sm-10\">" +
+            "<input type=\"text\" class=\"form-control\" placeholder=\"请输入属性名称\"  name=\"p1\"></div></div>";
+        $("#img_add").prev().after(inputHtml);
+    }
+    //删除属性文本框
+    function DelProperty() {
+        if ($("#frmProperty").find("input").length > 1) {
+            $("#img_add").prevAll("input:lt(2)").remove();
+            $("#img_add").prevAll("lable:lt(2)").remove();
+            $("#img_add").prevAll("div:eq(0)").remove();
+        } else {
+            $("#img_add").prev().val("");
+            $("#img_add").prev().prev().val("");
+        }
+    }
+
+
+    $("#btnSave").click(function () {
+        //循环找到文本框中的值
+        $("#frmProperty").find("input[type='text']").each(function() {
+            alert($(this).val());
+        });
+    });
+
+</script>
