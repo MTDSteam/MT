@@ -451,7 +451,7 @@ function alertDialog(msg, type) {
         id: "alertDialog",
         icon: icon,
         content: msg,
-        title: "力软提示",
+        title: "提示",
         ok: function () {
             return true;
         }
@@ -628,8 +628,8 @@ function AddTabMenu(tabid, url, name, img, Isclose, IsReplace) {
     }
     if (top.document.getElementById("tabs_" + tabid) == null) { //如果当前tabid存在直接显示已经打开的tab
         Loading(true);
-        if (tabs_container.find('li').length >= 10) {
-            top.jBox.info("为保证系统效率,只允许同时运行10个功能窗口,请关闭一些窗口后重试！", '信息警告');
+        if (tabs_container.find('li').length >= 20) {
+            top.jBox.info("为保证系统效率,只允许同时运行20个功能窗口,请关闭一些窗口后重试！", '信息警告');
             return false;
         }
         tabs_container.find('li').removeClass('selected');
