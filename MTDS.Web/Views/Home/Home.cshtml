@@ -95,15 +95,6 @@
                     $(this).find('b').hide();
                     $(this).find('i').show();
                 }
-            }).hover(function () {
-                if ($(this).hasClass("harvest")) {
-                    $(this).removeClass('harvest');
-                    $(".navigation").animate({ width: 204 }, 150);
-                    $('.accordion').show();
-                    $(this).find('b').hide();
-                    $(this).find('i').show();
-                    $(".navigation").css('position', 'absolute');
-                }
             });
         }
         /*导航菜单begin====================*/
