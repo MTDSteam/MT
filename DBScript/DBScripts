@@ -436,6 +436,59 @@ insert into users(userid
       ,[ModifyTime]
       ,[ModifyBy])
 	  values 
-(NEWID(),'test','test','123456','wleide@qq.com','18521593997',1,1,1,1,'test','',getdate(),null,getdate(),'test',getdate(),'test')
+(NEWID(),'test','test','123456','111@qq.com','18511111111',1,1,1,1,'test','',getdate(),null,getdate(),'test',getdate(),'test')
 
 update Users set password='E10ADC3949BA59ABBE56E057F20F883E'
+
+----5.23号 添加表 Dictionary
+USE [MTDS]
+GO
+
+/****** Object:  Table [dbo].[Dictionary]    Script Date: 2018/5/23 21:50:00 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Dictionary](
+	[Id] [uniqueidentifier] NOT NULL,
+	[ParentId] [uniqueidentifier] NOT NULL,
+	[Title] [nvarchar](max) NOT NULL,
+	[Code] [varchar](500) NULL,
+	[Value] [varchar](max) NULL,
+	[Note] [varchar](max) NULL,
+	[Other] [varchar](max) NULL,
+	[Sort] [int] NOT NULL,
+ CONSTRAINT [PK_Dictionary] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'上级ID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Dictionary', @level2type=N'COLUMN',@level2name=N'ParentId'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'标题' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Dictionary', @level2type=N'COLUMN',@level2name=N'Title'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'唯一代码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Dictionary', @level2type=N'COLUMN',@level2name=N'Code'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Dictionary', @level2type=N'COLUMN',@level2name=N'Value'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'备注' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Dictionary', @level2type=N'COLUMN',@level2name=N'Note'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'其它信息' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Dictionary', @level2type=N'COLUMN',@level2name=N'Other'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'排序' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Dictionary', @level2type=N'COLUMN',@level2name=N'Sort'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'说明', @value=N'数据字典表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Dictionary'
+GO
+
+
