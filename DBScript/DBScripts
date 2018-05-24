@@ -590,3 +590,11 @@ CREATE TABLE [dbo].[AssetProperty](
 GO
 
 
+----20180524  alter column (Dictionary)
+alter table Dictionary alter column Title varchar(100)
+
+alter table Dictionary alter column [Value] varchar(100)
+
+alter table Dictionary alter column Note varchar(200)
+
+alter table Dictionary alter column Other varchar(200)
