@@ -598,3 +598,66 @@ alter table Dictionary alter column [Value] varchar(100)
 alter table Dictionary alter column Note varchar(200)
 
 alter table Dictionary alter column Other varchar(200)
+
+
+----20180524 insert data into dictionary
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'00000000-0000-0000-0000-000000000000','数据字典',
+NULL,NULL,NULL,NULL,1)
+
+
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'CD0784AE-B354-4DDB-B395-CCE719CA627B','设备类别',
+'AssetCategory',NULL,NULL,NULL,1)
+
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'248BEB8D-0321-4005-9B40-34C568989F6F','水位监测系统',
+NULL,NULL,NULL,NULL,1)
+
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'248BEB8D-0321-4005-9B40-34C568989F6F','雨量监测',
+NULL,NULL,NULL,NULL,2)
+
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'248BEB8D-0321-4005-9B40-34C568989F6F','预警通信系统设施设备',
+NULL,NULL,NULL,NULL,3)
+
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'248BEB8D-0321-4005-9B40-34C568989F6F','监测预警平台设备设施及软件',
+NULL,NULL,NULL,NULL,4)
+
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'D438DE96-4715-45CE-8731-DE1C8584FE41','自动水位站',
+NULL,NULL,NULL,NULL,1)
+
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'D438DE96-4715-45CE-8731-DE1C8584FE41','简易水位',
+NULL,NULL,NULL,NULL,2)
+
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'35C4FC57-6260-4D71-8B45-CAEC51E732B6','自动雨量站',
+NULL,NULL,NULL,NULL,1)
+
+insert into Dictionary
+([Id],[ParentId],[Title],[Code],[Value],[Note],[Other],[Sort])
+values
+(NEWID(),'35C4FC57-6260-4D71-8B45-CAEC51E732B6','简易雨量站',
+NULL,NULL,NULL,NULL,2)
