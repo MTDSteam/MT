@@ -83,7 +83,7 @@ namespace MTDS.Web.Controllers
                         UserID = Guid.NewGuid(),
                         Username = userName,
                         LoginName = loginName,
-                        Password = password,
+                        Password = Md5Encoding.Encoding(password),
                         Mobile = mobile,
                         Email = email,
                         Address = address,

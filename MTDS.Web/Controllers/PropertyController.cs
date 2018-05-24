@@ -17,6 +17,15 @@ namespace MTDS.Web.Controllers
         }
 
 
+        public string PP()
+        {
+            //通过Dictionary在AssetType表中知道属于这个大分类下的小分类，然后后侧进行属性维护
+
+
+
+            return null;
+        }
+
 
     }
 }

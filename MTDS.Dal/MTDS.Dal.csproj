@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AreaDal.cs" />
+    <Compile Include="AssetPropertyDal.cs" />
     <Compile Include="DapperHelper.cs" />
     <Compile Include="UserDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
