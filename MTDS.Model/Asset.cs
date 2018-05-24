@@ -13,8 +13,8 @@ namespace MTDS.Model
     {
        public Guid Id { get; set; }
        public Guid AssetTypeId { get; set; }
-       public Guid propertyID { get; set; }
-       public string propertyValue { get; set; }
+       public Guid PropertyID { get; set; }
+       public string PropertyValue { get; set; }
        public DateTime CreateTime { get; set; }
        public string CreateBy { get; set; }
        public DateTime ModifyTime { get; set; }

@@ -15,7 +15,7 @@ namespace MTDS.Model
        public Guid DictionaryId { get; set; }
        public string Name { get; set; }
        public Guid ParentID { get; set; }
-       public short isAssetName { get; set; }
+       public short IsAssetName { get; set; }
        public DateTime CreateTime { get; set; }
        public string CreateBy { get; set; }
        public DateTime ModifyTime { get; set; }
