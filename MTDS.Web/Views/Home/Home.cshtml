@@ -30,25 +30,9 @@
         //点击菜单连接（隐藏导航菜单）
         function linkAddTabMenu() {
             $('.btn-nav-toggle').removeAttr('disabled');
-            $('.btn-nav-toggle').removeClass('harvest');
+            //$('.btn-nav-toggle').removeClass('harvest');
             $('.btn-nav-toggle').trigger("click");
-            //点击Tab事件
-            $('#tabs_container li').click(function () {
-                var id = $(this).attr('id');
-                if (id == 'tabs_Imain') {
-                    $('.btn-nav-toggle').attr('disabled', 'disabled');
-                    //点击首页（显示导航菜单）
-                    $(".navigation").css('position', 'initial');
-                    $('.btn-nav-toggle').addClass('harvest');
-                    $('.btn-nav-toggle').trigger("click");
-                } else {
-                    $('.btn-nav-toggle').removeAttr('disabled');
-                    //（隐藏导航菜单）
-                    $(".navigation").css('position', 'absolute');
-                    $('.btn-nav-toggle').removeClass('harvest');
-                    $('.btn-nav-toggle').trigger("click");
-                }
-            });
+          
         }
         //初始化界面UI效果
         function InitializeImpact() {
