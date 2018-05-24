@@ -46,8 +46,8 @@ namespace MTDS.Dal
             using (var conn = DapperHelper.CreateConnection())
             {
                 string sql =
-                    "Update users set loginName=@loginName,username=@username,email=@email,mobile=@mobile,telephone=@telephone," +
-                    "CreateTime=@CreateTime,CreateBy=@CreateBy,ModifyTime=@ModifyTime," +
+                    "Update users set loginName=@loginName,username=@username,email=@email,mobile=@mobile," +
+                    "Address=@Address,ModifyTime=@ModifyTime," +
                     "ModifyBy=@ModifyBy where UserID=@UserID";
                 return conn.Execute(sql, model);
             }
@@ -74,7 +74,7 @@ namespace MTDS.Dal
         {
             using (var conn = DapperHelper.CreateConnection())
             {
-                string sql = "Select * from Users where Id='" + userId + "'";
+                string sql = "Select * from Users where UserID='" + userId + "'";
                 return conn.Query<Users>(sql).SingleOrDefault();
             }
         }
@@ -92,7 +92,5 @@ namespace MTDS.Dal
                 return conn.Query<Users>(sql).SingleOrDefault();
             }
         }
-
-
     }
 }

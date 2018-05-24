@@ -17,7 +17,7 @@
                 </div>
                 <div class="pwd">
                     <label>密　码</label><input type="password" class="text" id="password" placeholder="密码" name="" tabindex="2">
-                    <input type="button" class="submit" id="btnLogin" tabindex="3" value="登录">
+                    <input type="button" class="submit" id="btnLogin" tabindex="3" value="登录" onclick="login()">
                     <div class="check"></div>
                 </div>
                 <div class="tip"></div>
@@ -39,8 +39,19 @@
 <![endif]-->
 
 <script type="text/javascript">
-    $("#btnLogin").click(function () {
 
+
+    $(document).ready(function () {
+        //回车进行登录
+        document.onkeydown = function (event) {
+            if (event.keyCode == 13) {
+                Login();
+            }
+        }
+    });
+
+    //登录
+    function Login() {
         var userName = $("#userName").val();
         var password = $("#password").val();
 
@@ -61,15 +72,6 @@
             data: { userName: $("#userName").val(), password: $("#password").val() },
             dataType: "json",
             success: function (data) {
-                //if (data == "0") {
-                //    layer.msg('用户不存在!', { icon: 2, time: 1000 });
-                //} else if (data == "1") {
-                //    layer.msg('密码不正确!', { icon: 2, time: 1000 });
-                //} else {
-                //    //登录成功
-                //    location.href = "/Project/ProList";
-                //    //$(".close").click();
-                //}
                 if (data == "success") {
                     location.href = "/Home/Home";
                 } else {
@@ -77,8 +79,7 @@
                 }
             }
         });
-
-    })
+    }
 
 </script>
 

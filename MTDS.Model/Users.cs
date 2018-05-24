@@ -8,6 +8,11 @@ namespace MTDS.Model
 {
    public class Users
     {
+        public Users()
+        {
+            Lastlogintime=DateTime.Now;
+            ModifyTime=DateTime.Now;
+        }
         /// <summary>
         /// 用户编号
         /// </summary>

@@ -14,8 +14,6 @@ namespace MTDS.Web.Controllers
     {
         private UserBll uBll=new UserBll();
 
-        private const int pageSize = 10;
-
         public ActionResult Index()
         {
             return View();

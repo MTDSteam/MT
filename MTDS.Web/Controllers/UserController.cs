@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using MTDS.BLL;
@@ -13,13 +14,17 @@ namespace MTDS.Web.Controllers
 {
     public class UserController : Controller
     {
-        private UserBll uBll=new UserBll();
+        private UserBll uBll = new UserBll();
         private const int pageSize = 10;
+        private AreaBll areaBll = new AreaBll();
         public ActionResult Index()
         {
             return View();
         }
-       
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
         public string GetList()
         {
             var pageIndex = Convert.ToInt32(Request["id1"]);
@@ -39,11 +44,11 @@ namespace MTDS.Web.Controllers
                 IsoDateTimeConverter timeFormat = new IsoDateTimeConverter();
                 timeFormat.DateTimeFormat = "yyyy-MM-dd";
 
-               return JsonConvert.SerializeObject(dataT, Formatting.Indented, timeFormat);
+                return JsonConvert.SerializeObject(dataT, Formatting.Indented, timeFormat);
             }
             else
             {
-              return  JsonConvert.SerializeObject("error");
+                return JsonConvert.SerializeObject("error");
             }
 
         }
@@ -56,37 +61,61 @@ namespace MTDS.Web.Controllers
         public JsonResult Register()
         {
             var resultMsg = "";
+            var hidId = Request.Form["HidUId"];
             var userName = HttpContext.Request.Form["txtRealName"];
             var loginName = Request.Form["txtloginName"];
             var password = Request.Form["txtPassword"];
             var mobile = Request.Form["txtTel"];
             var email = Request.Form["txtEmail"];
             var address = Request.Form["txtAddress"];
-            var provinceId = Request.Form["area1"];
-            var cityId = Request.Form["area2"];
-            var countryId = Request.Form["area3"];
 
-            var model = uBll.GetByAccount(userName);
-            if (model != null)
+            if (hidId.IsNullOrEmpty())
             {
-                resultMsg = "当前用户已存在!";
+                var model = uBll.GetByAccount(userName);
+                if (model != null)
+                {
+                    resultMsg = "当前用户已存在!";
+                }
+                else
+                {
+                    var pp = new Users()
+                    {
+                        UserID = Guid.NewGuid(),
+                        Username = userName,
+                        LoginName = loginName,
+                        Password = password,
+                        Mobile = mobile,
+                        Email = email,
+                        Address = address,
+                        CreateTime = DateTime.Now,
+                        ModifyTime = DateTime.Now,
+                        CreateBy = Session["userName"] != null ? Session["userName"].ToString() : ""
+                    };
+
+
+                    var rst = uBll.Insert(pp);
+                    if (rst > 0)
+                    {
+                        resultMsg = "success";
+                    }
+                    else
+                    {
+                        resultMsg = "error";
+                    }
+                }
             }
             else
             {
-                var pp = new Users()
-                {
-                    UserID = Guid.NewGuid(),
-                    Username = "系统管理员",
-                    LoginName = "Admin",
-                    Password = Md5Encoding.Encoding("123456"),
-                    Address = "山西省太原市小店区",
-                    Lastlogintime = DateTime.Now,
-                    CreateTime = DateTime.Now,
-                    ModifyTime = DateTime.Now
-                };
+                var uu = uBll.GetById(hidId.ToGuid());
+                uu.LoginName = loginName;
+                uu.Username = userName;
+                uu.Mobile = mobile;
+                uu.Email = email;
+                uu.Address = address;
+                uu.ModifyTime=DateTime.Now;
+                uu.ModifyBy = Session["userName"] != null ? Session["userName"].ToString() : "";
 
-
-                var rst = uBll.Insert(pp);
+                var rst = uBll.Update(uu);
                 if (rst > 0)
                 {
                     resultMsg = "success";
@@ -96,6 +125,7 @@ namespace MTDS.Web.Controllers
                     resultMsg = "error";
                 }
             }
+           
 
             return Json(resultMsg, JsonRequestBehavior.AllowGet);
         }
@@ -105,7 +135,6 @@ namespace MTDS.Web.Controllers
         {
             var id = Request.Form["uid"];
             var rst = uBll.Delete(id.ToGuid());
-
 
             if (rst > 0)
                 return "success";
@@ -129,5 +158,8 @@ namespace MTDS.Web.Controllers
                 return Json("error", JsonRequestBehavior.AllowGet);
             }
         }
+
+
+
     }
 }

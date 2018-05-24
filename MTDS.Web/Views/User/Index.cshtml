@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         
-                        <div>
+                        <div class="col-sm-12 detail_form" id="pss">
                             <label class="control-label col-sm-4" style="width: 20%">密码:</label>
                             <div class="form-group  col-sm-8" style="padding: 0; width: 80%">
                                 <input type="password" class="form-control" name="txtPassword" id="txtPassword" required="required" data-bv-notempty-message="此项为必填项" />
@@ -109,8 +109,7 @@
                                 <input type="text" class="form-control" name="txtEmail" id="txtEmail" required="required" data-bv-notempty-message="此项为必填项" />
                             </div>
                         </div>
-
-
+                        
                         <div class="col-sm-12 detail_form">
                             <label class="control-label col-sm-4" style="width: 25%">详细地址:</label>
                             <div class="form-group  col-sm-8" style="padding: 0; width: 75%">
@@ -164,7 +163,17 @@
             }
         });
     }
-
+    //清空文本框
+    function clear() {
+        $("#pss").show();
+        $("#HidUId").val("");  //编号Id
+        $("#txtRealName").val(""); //用户名
+        $("#txtPassword").val(""); //密码
+        $("#txtloginName").val("");  //登录名
+        $("#txtTel").val("");
+        $("#txtEmail").val("");
+        $("#txtAddress").val("");
+    }
 
     //保存
     function SaveInfo() {
@@ -172,7 +181,6 @@
            type: "POST",
            url: '../User/Register',
            data: $("#form_regist").serialize(),
-
            error: function (request) {
                layer.msg('保存失败!', { icon: 2, time: 1000 });
            },
@@ -180,6 +188,7 @@
                if (data == "success") {
                    layer.msg('保存成功!', { icon: 1, time: 1000 });
                    initData(1);
+                   clear();
                    $(".modal_out").click();
                } else {
                    layer.msg('保存失败!', { icon: 2, time: 1000 });
@@ -222,6 +231,7 @@
 
     //编辑
     function Edit(id) {
+        $("#pss").hide();
         $.getJSON("../User/GetSingle", { uid: id }, function (data) {
             if (data != "error") {
                 $("#HidUId").val(id);  //编号Id
@@ -230,10 +240,14 @@
                 $("#txtTel").val(data.Mobile);
                 $("#txtEmail").val(data.Email);
                 $("#txtAddress").val(data.Address);
-           
+            } else {
+                layer.msg("获取数据失败", { icon: 2, time: 2000 });
             }
         });
     }
 
+    $(".modal_out").click(function () {
+        clear();
+    });
 
 </script>

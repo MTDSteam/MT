@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Area.cs" />
     <Compile Include="Asset.cs" />
     <Compile Include="AssetProperty.cs" />
     <Compile Include="AssetType.cs" />
