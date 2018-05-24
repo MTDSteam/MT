@@ -1,6 +1,5 @@
 ﻿/**
- * jQuery LeaRunUI 4.1
- *上海力软信息技术有限公司 Copyright © Learun 2014
+
  */
 //样式
 $(function () {

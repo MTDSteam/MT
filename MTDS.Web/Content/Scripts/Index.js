@@ -11,13 +11,13 @@ function readyIndex() {
 }
 /**安全退出**/
 function IndexOut() {
-    var msg = "<div class='ui_alert'>确认要退出 LeaRun.信息化快速开发框架？</div>"
+    var msg = "<div class='ui_alert'>确认要退出吗？</div>"
     top.$.dialog({
         id: "confirmDialog",
         lock: true,
         icon: "hits.png",
         content: msg,
-        title: "力软提示",
+        title: "提示",
         button: [
         {
             name: '退出',
