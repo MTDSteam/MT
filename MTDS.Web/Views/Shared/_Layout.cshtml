@@ -65,10 +65,10 @@
 </head>
 <body>
     <section id="container">
-        @Html.Partial("_Header")
-        @Html.Partial("_Left")
+        @*@Html.Partial("_Header")*@
+        @*@Html.Partial("_Left")*@
         @RenderBody()
-        @Html.Partial("_Foot")
+        @*@Html.Partial("_Foot")*@
     </section>
 </body>
 </html>
@@ -90,18 +90,4 @@
 <script src="/assets/js/sparkline-chart.js"></script>
 <script src="/assets/js/zabuto_calendar.js"></script>
 
-<!--突显左侧菜单-->
-<script src="~/Scripts/MenuFeature.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".btn-slide").click(function () {
-            $("#panel").slideToggle("slow");
-            $(this).toggleClass("active"); return false;
-        });
-
-        //默认我的项目菜单被选中
-        //Feature(0);
-    });
-</script>
 

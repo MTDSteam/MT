@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using System.Data;
+using System.Data.SqlClient;
 using MTDS.Model;
-
+using MTDS.Common;
 namespace MTDS.Dal
 {
    public class AssetPropertyDal
@@ -48,6 +50,31 @@ namespace MTDS.Dal
                 string sql =
                     "Select * from AssetProperty where DictionaryId=@DictionaryId and AssetTypeId=@AssetTypeId";
                 return conn.Query<AssetProperty>(sql, new {DictionaryId = dictionary, AssetTypeId = assetId}).ToList();
+            }
+        }
+        /// <summary>
+        /// 根据assetType获取内容
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <param name="assetId"></param>
+        /// <returns></returns>
+        public DataTable GetAssetbyType(Guid assetTypeId)
+        {
+            using (var conn = new SqlConnection(Config.PlatformConnectionString))
+            {
+                conn.Open();
+                var sqlcommand = new SqlCommand("sp_getAssetTablebyAssetType", conn);
+                sqlcommand.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter[] parms = { new SqlParameter("@assetId",assetTypeId) };
+
+                SqlDataAdapter sqa = new SqlDataAdapter(sqlcommand);
+
+                DataSet ds = new DataSet();
+
+                sqa.Fill(ds);
+
+                return ds.Tables[0];
             }
         }
 

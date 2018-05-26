@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Data;
+using MTDS.BLL;
 namespace MTDS.Web.Controllers
 {
     public class PropertyController : Controller
@@ -11,19 +14,24 @@ namespace MTDS.Web.Controllers
         //
         // GET: /Property/
 
-        public ActionResult Index()
+        public ActionResult Property()
         {
-            return View("Property");
+            return View();
         }
 
-
-        public string PP()
+        AssetPropertyBll bll = new AssetPropertyBll();
+        [HttpPost]
+        public JsonResult getPropertyList()
         {
-            //通过Dictionary在AssetType表中知道属于这个大分类下的小分类，然后后侧进行属性维护
-
-
-
-            return null;
+            var assetTypeID = Request["assetTypeID"];
+            if (!string.IsNullOrEmpty(assetTypeID))
+            {
+                DataTable dt = bll.GetAssetbyType(new Guid(assetTypeID));
+                return Json(dt, JsonRequestBehavior.AllowGet);
+            }
+            else
+                return null;
+      
         }
 
 
