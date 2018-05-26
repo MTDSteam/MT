@@ -661,3 +661,438 @@ insert into Dictionary
 values
 (NEWID(),'35C4FC57-6260-4D71-8B45-CAEC51E732B6','简易雨量站',
 NULL,NULL,NULL,NULL,2)
+
+
+------5.26 插入测试数据，及视图和存储
+ALTER TABLE dbo.Assets
+	DROP CONSTRAINT PK_Assets_1
+GO
+ALTER TABLE dbo.Assets ADD CONSTRAINT
+	PK_Assets PRIMARY KEY CLUSTERED 
+	(
+	Id,
+	propertyID
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+INSERT INTO dbo.Dictionary
+        ( Id ,
+          ParentId ,
+          Title ,
+          Code ,
+          Value ,
+          Note ,
+          Other ,
+          Sort
+        )
+VALUES  ('A1F3F728-5432-43ED-BE08-4B01D8D7348F' , -- Id - uniqueidentifier
+         '00000000-0000-0000-0000-000000000000' , -- ParentId - uniqueidentifier
+          N'水位监测系统' , -- Title - nvarchar(max)
+          '1' , -- Code - varchar(500)
+          '' , -- Value - varchar(max)
+          '' , -- Note - varchar(max)
+          '' , -- Other - varchar(max)
+          0  -- Sort - int
+        )
+
+		
+INSERT INTO dbo.Dictionary
+        ( Id ,
+          ParentId ,
+          Title ,
+          Code ,
+          Value ,
+          Note ,
+          Other ,
+          Sort
+        )
+VALUES  ('D0D6321D-7E70-4A4A-BA65-878093D8A079' , -- Id - uniqueidentifier
+         'A1F3F728-5432-43ED-BE08-4B01D8D7348F' , -- ParentId - uniqueidentifier
+          N'自动水位站' , -- Title - nvarchar(max)
+          '1' , -- Code - varchar(500)
+          '' , -- Value - varchar(max)
+          '' , -- Note - varchar(max)
+          '' , -- Other - varchar(max)
+          0  -- Sort - int
+        )
+
+
+
+insert INTO dbo.AssetType
+        ( Id ,
+          DictionaryId ,
+          Name ,
+          ParentID ,
+          isAssetName ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( '885775CD-01B3-4196-AD1B-E5BDBDA3C962' , -- Id - uniqueidentifier
+          'D0D6321D-7E70-4A4A-BA65-878093D8A079' , -- DictionaryId - uniqueidentifier
+          '传感器' , -- Name - varchar(100)
+          '00000000-0000-0000-0000-000000000000' , -- ParentID - uniqueidentifier
+          0 , -- isAssetName - smallint
+          GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        ) 
+
+insert INTO dbo.AssetType
+        ( Id ,
+          DictionaryId ,
+          Name ,
+          ParentID ,
+          isAssetName ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( '3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0' , -- Id - uniqueidentifier
+          'D0D6321D-7E70-4A4A-BA65-878093D8A079' , -- DictionaryId - uniqueidentifier
+          '雷达式水位计' , -- Name - varchar(100)
+          '885775CD-01B3-4196-AD1B-E5BDBDA3C962' , -- ParentID - uniqueidentifier
+          1 , -- isAssetName - smallint
+          GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        ) 
+
+		insert INTO dbo.AssetType
+        ( Id ,
+          DictionaryId ,
+          Name ,
+          ParentID ,
+          isAssetName ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( NEWID() , -- Id - uniqueidentifier
+          'D0D6321D-7E70-4A4A-BA65-878093D8A079' , -- DictionaryId - uniqueidentifier
+          '遥测终端RTU' , -- Name - varchar(100)
+          '00000000-0000-0000-0000-000000000000' , -- ParentID - uniqueidentifier
+          1 , -- isAssetName - smallint
+          GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        ) 
+
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('C9E09C9A-7EC7-4998-8768-070B49EA6191','品牌','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('33900142-577E-4146-95D0-7DB695D8C387','型号','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('F95627A8-9EF5-482E-9DD8-81B0855403E2','承雨口内径','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('6A7CB3D2-361C-47FE-8B36-3416D5E6677A','仪器分辨力','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('9ACF30B2-3780-4141-ADFC-83F73ECF54D9','降雨强度测量范围','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('0943590C-19EC-4680-9B8E-7E51E0176301','仪器综合计量误差','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('C2E82C2D-94FA-4EC4-B1AE-7B750D6F8122','发讯方式','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('FC7C2A62-3D4D-4A93-95BB-027EF1FE03A1','尺寸','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('8CCB7002-07BF-442F-97F7-48FCFD2B291C','生产日期','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('60DB4A2A-17FB-40BD-8952-A53783822405','质保期限','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+insert into [AssetProperty]([Id]
+      ,[Name]
+      ,[DictionaryId]
+      ,[AssetTypeId]
+      ,[CreateTime]
+      ,[CreateBy]
+      ,[ModifyTime]
+      ,[ModifyBy]) values
+('6D63BABE-855B-452B-847B-D51488260A7D','备注','D0D6321D-7E70-4A4A-BA65-878093D8A079','3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0',GETDATE(),'9470C4AF-C9E3-40E2-9512-3B5798888AFB',GETDATE(),
+'9470C4AF-C9E3-40E2-9512-3B5798888AFB')
+
+
+Id	Name
+FC7C2A62-3D4D-4A93-95BB-027EF1FE03A1	尺寸
+C9E09C9A-7EC7-4998-8768-070B49EA6191	品牌
+6A7CB3D2-361C-47FE-8B36-3416D5E6677A	仪器分辨力
+8CCB7002-07BF-442F-97F7-48FCFD2B291C	生产日期
+C2E82C2D-94FA-4EC4-B1AE-7B750D6F8122	发讯方式
+33900142-577E-4146-95D0-7DB695D8C387	型号
+0943590C-19EC-4680-9B8E-7E51E0176301	仪器综合计量误差
+F95627A8-9EF5-482E-9DD8-81B0855403E2	承雨口内径
+9ACF30B2-3780-4141-ADFC-83F73ECF54D9	降雨强度测量范围
+60DB4A2A-17FB-40BD-8952-A53783822405	质保期限
+6D63BABE-855B-452B-847B-D51488260A7D	备注
+--
+
+INSERT INTO dbo.Assets
+        ( Id ,
+          AssetTypeId ,
+          propertyID ,
+          propertyValue ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( '75D83957-A603-43EC-9EAB-CCF3142CB426' , -- Id - uniqueidentifier
+          '3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0' , -- AssetTypeId - uniqueidentifier
+          '0943590C-19EC-4680-9B8E-7E51E0176301' , -- propertyID - uniqueidentifier
+          '仪器综合计量误差为+-5' , -- propertyValue - varchar(200)
+           GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        )
+
+INSERT INTO dbo.Assets
+        ( Id ,
+          AssetTypeId ,
+          propertyID ,
+          propertyValue ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( '75D83957-A603-43EC-9EAB-CCF3142CB426' , -- Id - uniqueidentifier
+          '3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0' , -- AssetTypeId - uniqueidentifier
+          '33900142-577E-4146-95D0-7DB695D8C387' , -- propertyID - uniqueidentifier
+          '型号1' , -- propertyValue - varchar(200)
+           GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        )
+
+INSERT INTO dbo.Assets
+        ( Id ,
+          AssetTypeId ,
+          propertyID ,
+          propertyValue ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( '75D83957-A603-43EC-9EAB-CCF3142CB426' , -- Id - uniqueidentifier
+          '3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0' , -- AssetTypeId - uniqueidentifier
+          'C2E82C2D-94FA-4EC4-B1AE-7B750D6F8122' , -- propertyID - uniqueidentifier
+          '发讯方式' , -- propertyValue - varchar(200)
+           GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        )
+
+INSERT INTO dbo.Assets
+        ( Id ,
+          AssetTypeId ,
+          propertyID ,
+          propertyValue ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( '75D83957-A603-43EC-9EAB-CCF3142CB426' , -- Id - uniqueidentifier
+          '3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0' , -- AssetTypeId - uniqueidentifier
+          '8CCB7002-07BF-442F-97F7-48FCFD2B291C' , -- propertyID - uniqueidentifier
+          '2017-01-01' , -- propertyValue - varchar(200)
+           GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        )
+
+INSERT INTO dbo.Assets
+        ( Id ,
+          AssetTypeId ,
+          propertyID ,
+          propertyValue ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( '75D83957-A603-43EC-9EAB-CCF3142CB426' , -- Id - uniqueidentifier
+          '3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0' , -- AssetTypeId - uniqueidentifier
+          '6A7CB3D2-361C-47FE-8B36-3416D5E6677A' , -- propertyID - uniqueidentifier
+          '1920*1080' , -- propertyValue - varchar(200)
+           GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        )
+
+INSERT INTO dbo.Assets
+        ( Id ,
+          AssetTypeId ,
+          propertyID ,
+          propertyValue ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( '75D83957-A603-43EC-9EAB-CCF3142CB426' , -- Id - uniqueidentifier
+          '3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0' , -- AssetTypeId - uniqueidentifier
+          'C9E09C9A-7EC7-4998-8768-070B49EA6191' , -- propertyID - uniqueidentifier
+          '华为' , -- propertyValue - varchar(200)
+           GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        )
+INSERT INTO dbo.Assets
+        ( Id ,
+          AssetTypeId ,
+          propertyID ,
+          propertyValue ,
+          CreateTime ,
+          CreateBy ,
+          ModifyTime ,
+          ModifyBy
+        )
+VALUES  ( NEWID() , -- Id - uniqueidentifier
+          '3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0' , -- AssetTypeId - uniqueidentifier
+          'FC7C2A62-3D4D-4A93-95BB-027EF1FE03A1' , -- propertyID - uniqueidentifier
+          '14寸' , -- propertyValue - varchar(200)
+           GETDATE() , -- CreateTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB' , -- CreateBy - uniqueidentifier
+          GETDATE() , -- ModifyTime - datetime
+          '9470C4AF-C9E3-40E2-9512-3B5798888AFB'  -- ModifyBy - uniqueidentifier
+        )
+
+
+ALTER VIEW v_AssetTypeAll
+AS
+SELECT d2.DictionaryId,di.Title AS categoryName,di1.Title AS systemCategroyName,d1.Name AS parentAssetTypeName,d1.id AS parentAssetTypeID ,
+ d2.Name AssetTypeName,d2.Id AssetTypeID,d2.CreateTime,d2.CreateBy,d2.ModifyTime,d2.ModifyBy 
+FROM dbo.AssetType d2
+LEFT JOIN dbo.AssetType d1 ON d1.Id=d2.ParentID
+LEFT JOIN dbo.Dictionary di ON di.Id=d2.DictionaryId
+LEFT JOIN dbo.Dictionary di1 ON di1.id=di.ParentId
+WHERE d2.isAssetName=1
+
+UPDATE dbo.AssetProperty SET sortcode=1  
+
+
+
+alter proc sp_getAssetTablebyAssetType
+@assetTypeID varchar(50)=null
+AS 
+BEGIN
+
+if exists(select * from tempdb..sysobjects where id=object_id('tempdb..##temp'))
+BEGIN
+   drop table ##temp  
+END
+
+DECLARE @sql_str VARCHAR(8000)
+DECLARE @sql_col VARCHAR(8000)--='[c_id],[c_AssetTypeId]'
+SELECT @sql_col = ISNULL(@sql_col + ',','') + QUOTENAME([name]) FROM [AssetProperty] WHERE AssetTypeId=@assetTypeID GROUP BY name,sortcode ORDER BY sortcode
+PRINT @sql_col
+SET @sql_str = '
+SELECT * into ##temp FROM (
+    SELECT ap.Name,ass.propertyValue,ass.AssetTypeId,ass.id FROM [AssetProperty] ap
+	LEFT JOIN 
+	dbo.Assets ass ON ap.Id=ass.propertyID) p PIVOT 
+    (max(propertyValue) FOR [name] IN ( '+ @sql_col +') ) AS pvt 
+	where id is not null'
+PRINT (@sql_str)
+EXEC (@sql_str)
+
+SELECT  va.categoryName,va.DictionaryId,va.systemCategroyName,va.parentAssetTypeName,va.parentAssetTypeID,va.AssetTypeName,d.*,info.* FROM ##temp d
+LEFT JOIN dbo.v_AssetTypeAll  va ON va.AssetTypeId=d.AssetTypeId
+LEFT JOIN (SELECT d2.Id,MAX(d2.CreateTime) CreateTime,MAX(d2.CreateBy) createby,MAX(d2.ModifyTime) ModifyTime,MAX(d2.ModifyBy) ModifyBy FROM dbo.Assets d2 GROUP BY d2.Id) info
+ ON info.id=d.Id
+
+
+end
