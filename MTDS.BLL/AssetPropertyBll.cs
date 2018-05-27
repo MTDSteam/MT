@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MTDS.Dal;
 using MTDS.Model;
-
+using System.Data;
 namespace MTDS.BLL
 {
    public class AssetPropertyBll
@@ -29,6 +29,10 @@ namespace MTDS.BLL
         public List<AssetProperty> GetByAssetType(Guid id)
         {
             return _dal.GetByAssetType(id);
+        }
+        public DataTable GetAssetbyType(Guid assetTypeID)
+        {
+            return _dal.GetAssetbyType(assetTypeID);
         }
 
         /// <summary>
