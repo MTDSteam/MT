@@ -20,14 +20,14 @@ namespace MTDS.Web.Controllers
         }
 
         AssetPropertyBll bll = new AssetPropertyBll();
-        [HttpPost]
-        public JsonResult getPropertyList()
+  
+        public string getPropertyList()
         {
             var assetTypeID = Request["assetTypeID"];
             if (!string.IsNullOrEmpty(assetTypeID))
             {
                 DataTable dt = bll.GetAssetbyType(new Guid(assetTypeID));
-                return Json(dt, JsonRequestBehavior.AllowGet);
+                return JsonConvert.SerializeObject(dt);
             }
             else
                 return null;

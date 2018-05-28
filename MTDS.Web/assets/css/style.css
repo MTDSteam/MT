@@ -501,7 +501,7 @@ ul.sidebar-menu li a.current i {
 
 /* MAIN CONTENT CONFIGURATION */
 #main-content {
-    margin-left: 200px;
+    margin-left: 100px;
     background:#fff;
     position: absolute;
     right: 0;

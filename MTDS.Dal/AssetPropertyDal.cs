@@ -60,14 +60,14 @@ namespace MTDS.Dal
         /// <returns></returns>
         public DataTable GetAssetbyType(Guid assetTypeId)
         {
-            using (var conn = new SqlConnection(Config.PlatformConnectionString))
-            {
+            var conn = new SqlConnection(Config.PlatformConnectionString);
+            
                 conn.Open();
-                var sqlcommand = new SqlCommand("sp_getAssetTablebyAssetType", conn);
-                sqlcommand.CommandType = CommandType.StoredProcedure;
+                var sqlcommand = new SqlCommand("exec sp_getAssetTablebyAssetType @assetTypeId", conn);
+                //sqlcommand.CommandType = CommandType.StoredProcedure;
 
-                SqlParameter[] parms = { new SqlParameter("@assetId",assetTypeId) };
-
+                SqlParameter[] parms = { new SqlParameter("@assetTypeId", assetTypeId) };
+                sqlcommand.Parameters.AddRange(parms);
                 SqlDataAdapter sqa = new SqlDataAdapter(sqlcommand);
 
                 DataSet ds = new DataSet();
@@ -75,7 +75,7 @@ namespace MTDS.Dal
                 sqa.Fill(ds);
 
                 return ds.Tables[0];
-            }
+            
         }
 
         /// <summary>

@@ -1,83 +1,17 @@
-
-ï»¿@{
-    ViewBag.Title = "å±æ€§ç»´æŠ¤";
+@{
+    ViewBag.Title = "test";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section id="main-content">
-
-    <section class="wrapper site-min-height">
-        <div class="col-md-5">
-            <!-- START PANEL -->
-            <div class="panel ogr_add">
-                <header class="panel-heading add_padding">
-                    <span class="label label-primary">
-                        è®¾å¤‡ç±»å‹
-                    </span>
-                </header>
-                <div class="panel-body">
-                    <div id="menu"></div>
-                </div>
-            </div>
-            <!-- END PANEL -->
-        </div>
-
-
-        <div class="col-md-7" id="floatDiv">
-            <div class="panel">
-                <header class="panel-heading add_padding">
-                    <span class="label label-primary">
-                        è®¾å¤‡å±æ€§ç»´æŠ¤
-                    </span>
-                </header>
-                <div class="panel-body">
-                    <form method="post" name="" id="frmProperty" class="with_validate">
-                        
-                        @if (true)  //å¦‚æœæœ‰å±æ€§å€¼,é»˜è®¤åŠ è½½å‡ºæ¥
-                        {
-                            <div class="form-group col-sm-12 detail_form">
-                                <label class="control-label col-sm-2">
-                                    å±æ€§åç§°ï¼š
-                                </label>
-                                <div class=" col-sm-10">
-                                    <input type="text" class="form-control" placeholder="è¯·è¾“å…¥å±æ€§åç§°"  name="p1">
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            
-                        }
-
-                     
-                        
-                        
-                        <img src="/Images/btn_add.png" id="img_add" title="æ·»åŠ å±æ€§" style="width: 2rem; cursor: pointer; margin-left: 5px;" onclick=" AddProperty() ">
-                        <img src="/Images/btn_del.png" id="img_del" title="åˆ é™¤æ‹ç‚¹åæ ‡" style="width: 2rem; cursor: pointer; margin-left: 0px;" onclick=" DelProperty() ">
-                    </form>
-
-
-                </div>
-                
-                <div class="btn-group">
-                    <button id="btnSave" class="btn btn-primary">ä¿å­˜</button>
-                    <button id="btnCancel" class="btn btn-default">è¿”å›</button>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-</section>
-
 <script type="text/javascript">
-    //å¢åŠ å±æ€§æ–‡æœ¬æ¡†
+    //Ôö¼ÓÊôĞÔÎÄ±¾¿ò
     function AddProperty() {
         var inputHtml = "<div class=\"form-group col-sm-12 detail_form\">" +
-            "<label class=\"control-label col-sm-2\">å±æ€§åç§°:</label><div class=\" col-sm-10\">" +
-            "<input type=\"text\" class=\"form-control\" placeholder=\"è¯·è¾“å…¥å±æ€§åç§°\"  name=\"p1\"></div></div>";
+            "<label class=\"control-label col-sm-2\">ÊôĞÔÃû³Æ:</label><div class=\" col-sm-10\">" +
+            "<input type=\"text\" class=\"form-control\" placeholder=\"ÇëÊäÈëÊôĞÔÃû³Æ\"  name=\"p1\"></div></div>";
         $("#img_add").prev().after(inputHtml);
     }
-    //åˆ é™¤å±æ€§æ–‡æœ¬æ¡†
+    //É¾³ıÊôĞÔÎÄ±¾¿ò
     function DelProperty() {
         if ($("#frmProperty").find("input").length > 1) {
             $("#img_add").prevAll("input:lt(2)").remove();
@@ -89,11 +23,110 @@
         }
     }
 
+    function initData(pageIndex) {
+        $.getJSON("../Property/getPropertyList", { id1: pageIndex, assetTypeID: "3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0" }, function (data) {
+            if (data != "error") {
+                var str = "";
+                var head_str = "<tr>";
+                $("#t_head").html("");
+                var column = new Array();
+                var columnNum = 0;
+                for (var obj in data[0]) {
+                    if (obj == "categoryName") {
+                        head_str += "<td>·ÖÀà</td>";
+                    }
+                    else if (obj == "DictionaryId" || obj == "parentAssetTypeID" || obj == "AssetTypeId" || obj == "id" || obj == "Id1" || obj == "CreateTime"
+                        || obj == "createby" || obj == "ModifyTime" || obj == "ModifyBy" || obj == "CreateTime") {
+                        continue;
+                    }
+                    else if (obj == "systemCategroyName") {
+                        head_str += "<td>ÏµÍ³·ÖÀà</td>";
+                    }
+                    else if (obj == "parentAssetTypeName") {
+                        head_str += "<td>Éè±¸ÀàĞÍ</td>";
+                    }
+                    else if (obj == "AssetTypeName") {
+                        head_str += "<td>Éè±¸</td>";
+                    }
+                    else {
+                        head_str += "<td>" + obj + "</td>";
+                        column[columnNum] = obj;
+                        columnNum++;
+                    }
+                }
+                head_str += "<td>²Ù×÷</td></tr>";
 
+                $("#tbody").html("");
+                $("#t_head").append(head_str);
+
+                for (var i = 0; i < data.length; i++) {
+                    str += "<tr><td>" + data[i].categoryName + "</td>";
+                    str += "<td>" + data[i].systemCategroyName + "</td>";
+                    str += "<td>" + data[i].parentAssetTypeName + "</td>";
+                    str += "<td>" + data[i].AssetTypeName + "</td>";
+                    for (var j = 0; j < column.length;j++) {
+
+                        str += "<td>" + data[i][column[j]] + "</td>";
+                    }
+                    str += "<td><a class=\"edit more\" data-toggle=\"modal\" href=\"#mymodal\" onclick=\"Edit('" + data[i].ID + "')\"><span class=\"label label-success \">±à¼­</span></a>";
+                    str += "<a class=\"edit more\"  href=\"javascript:;\" onclick=\"Delete(this,'" + data[i].ID + "')\"><span class=\"label label-success \">É¾³ı</span></a>";
+                    str += "</td></tr>";
+                }
+                $("#tbody").append(str);
+                $("#userCount").html(data.Total);
+                $("#NavLink").html(data.NavPageStr);  //µ¼º½Á´½Ó
+                bindNavLinkEvent();
+            } else {
+                $("#tbody").html("");
+                $("#userCount").html(0);
+            }
+        });
+    }
     $("#btnSave").click(function () {
-        //å¾ªç¯æ‰¾åˆ°æ–‡æœ¬æ¡†ä¸­çš„å€¼
+        //Ñ­»·ÕÒµ½ÎÄ±¾¿òÖĞµÄÖµ
         $("#frmProperty").find("input[type='text']").each(function() {
             alert($(this).val());
         });
     });
+    $(document).ready(function () {
+        initData(1);
+    });
+    function bindNavLinkEvent() {
+        //È¡µÃ·ÖÒ³±êÇ©
+        $(".pageLink").click(function () {
+            //ÄÃµ½hrefÖµ
+            var href = $(this).attr("href");
+            //µÃµ½hrefÖĞpageIndexµÄÊı¾İ
+            var pageIndex = href.substr(href.lastIndexOf('?') + 1).substring(href.indexOf('='), href.indexOf('&') - 1);
+            //³õÊ¼»¯±í¸ñ
+            initData(pageIndex);
+            return false;
+        });
+    }
 </script>
+<section id="main-content">
+    <div style="margin-top: 0px;">
+        <div class="row" style="margin-top: 0px;">
+
+
+            <div class="modal-header">
+                <div class="btn_float" style=" margin-left:15px;">
+                    <button class="btn btn-primary green" data-toggle="modal" href="#mymodal" id="btnAdd">Ìí¼ÓÉè±¸</button>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <table class="table table-striped table-hover table-bordered edit_add tb-h" id="tbPro" style="margin-top: 10px; width:95%">
+                <thead id="t_head">
+                    <tr></tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+
+            <div class="col-sm-12 page_div" style="">
+                <span class="col-sm-2 page_total" style="white-space:nowrap">¹²ÓĞÊı¾İ£º<strong id="userCount"></strong> Ìõ</span>
+                <div id="NavLink" class="paginator pd-20 col-sm-10" style="text-align: center"></div>
+            </div>
+        </div>
+    </div>
+  
+</section>
