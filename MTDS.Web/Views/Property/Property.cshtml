@@ -3,14 +3,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/js/plugins/jeditable/jquery.jeditable.js"></script>
+<!-- Data Tables -->
+<script src="~/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="~/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<!-- 自定义js -->
+<script src="~/js/content.js?v=1.0.0"></script>
+<style>
+    .dataTable th {   
+    white-space: nowrap !important;  
+}  
+</style>
 <script type="text/javascript">
-    //增加属性文本框
-    function AddProperty() {
-        var inputHtml = "<div class=\"form-group col-sm-12 detail_form\">" +
-            "<label class=\"control-label col-sm-2\">属性名称:</label><div class=\" col-sm-10\">" +
-            "<input type=\"text\" class=\"form-control\" placeholder=\"请输入属性名称\"  name=\"p1\"></div></div>";
-        $("#img_add").prev().after(inputHtml);
-    }
     //删除属性文本框
     function DelProperty() {
         if ($("#frmProperty").find("input").length > 1) {
@@ -22,111 +26,116 @@
             $("#img_add").prev().prev().val("");
         }
     }
-
-    function initData(pageIndex) {
-        $.getJSON("../Property/getPropertyList", { id1: pageIndex, assetTypeID: "3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0" }, function (data) {
+    function initData() {
+        $.getJSON("../Property/getPropertyList", { id1: 1, assetTypeID: "3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0" }, function (data) {
             if (data != "error") {
                 var str = "";
                 var head_str = "<tr>";
                 $("#t_head").html("");
                 var column = new Array();
                 var columnNum = 0;
-                for (var obj in data[0]) {
+
+                var columnData=[];
+                for (var obj in data.aaData[0]) {
                     if (obj == "categoryName") {
-                        head_str += "<td>分类</td>";
+                        head_str += "<td style='width:15%'>分类</td>";
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
                     }
                     else if (obj == "DictionaryId" || obj == "parentAssetTypeID" || obj == "AssetTypeId" || obj == "id" || obj == "Id1" || obj == "CreateTime"
                         || obj == "createby" || obj == "ModifyTime" || obj == "ModifyBy" || obj == "CreateTime") {
                         continue;
                     }
                     else if (obj == "systemCategroyName") {
-                        head_str += "<td>系统分类</td>";
+                        head_str += "<td style='width:15%'>系统分类</td>";
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
                     }
                     else if (obj == "parentAssetTypeName") {
-                        head_str += "<td>设备类型</td>";
+                        head_str += "<td style='width:15%'>设备类型</td>";
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
                     }
                     else if (obj == "AssetTypeName") {
-                        head_str += "<td>设备</td>";
+                        head_str += "<td style='width:15%'>设备</td>";
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
                     }
                     else {
-                        head_str += "<td>" + obj + "</td>";
+                        head_str += "<td style='width:15%'>" + obj + "</td>";
                         column[columnNum] = obj;
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
                         columnNum++;
                     }
                 }
-                head_str += "<td>操作</td></tr>";
-
-                $("#tbody").html("");
                 $("#t_head").append(head_str);
 
-                for (var i = 0; i < data.length; i++) {
-                    str += "<tr><td>" + data[i].categoryName + "</td>";
-                    str += "<td>" + data[i].systemCategroyName + "</td>";
-                    str += "<td>" + data[i].parentAssetTypeName + "</td>";
-                    str += "<td>" + data[i].AssetTypeName + "</td>";
-                    for (var j = 0; j < column.length;j++) {
+                //for (var i = 0; i < data.length; i++) {
+                //    str += "<tr class='gradeA'><td>" + data[i].categoryName + "</td>";
+                //    str += "<td>" + data[i].systemCategroyName + "</td>";
+                //    str += "<td>" + data[i].parentAssetTypeName + "</td>";
+                //    str += "<td>" + data[i].AssetTypeName + "</td>";
+                //    for (var j = 0; j < column.length;j++) {
 
-                        str += "<td>" + data[i][column[j]] + "</td>";
-                    }
-                    str += "<td><a class=\"edit more\" data-toggle=\"modal\" href=\"#mymodal\" onclick=\"Edit('" + data[i].ID + "')\"><span class=\"label label-success \">编辑</span></a>";
-                    str += "<a class=\"edit more\"  href=\"javascript:;\" onclick=\"Delete(this,'" + data[i].ID + "')\"><span class=\"label label-success \">删除</span></a>";
-                    str += "</td></tr>";
-                }
-                $("#tbody").append(str);
-                $("#userCount").html(data.Total);
-                $("#NavLink").html(data.NavPageStr);  //导航链接
-                bindNavLinkEvent();
+                //        str += "<td>" + data[i][column[j]] + "</td>";
+                //    }
+                //    str += "<td><a class=\"edit more\" data-toggle=\"modal\" href=\"#mymodal\" onclick=\"Edit('" + data[i].ID + "')\"><span class=\"label label-success \">编辑</span></a>";
+                //    str += "<a class=\"edit more\"  href=\"javascript:;\" onclick=\"Delete(this,'" + data[i].ID + "')\"><span class=\"label label-success \">删除</span></a>";
+                //    str += "</td></tr>";
+                //}
+                //$("#t_body").append(str);
+             
+                var oTable = $('#editable').dataTable({
+                    "ajax": {
+                        url: "../Property/getPropertyList?assetTypeID",
+                        data: { "assetTypeID": "3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0" },
+                        type: "POST"
+
+                    },
+                 
+                    "bAutoWidth": true,
+                    "dataType": "json",
+                    "bSort": false,
+                    "serverSide": true,
+                    "columns": columnData
+
+                });
+             
             } else {
-                $("#tbody").html("");
-                $("#userCount").html(0);
+                $("#t_body").html("");
             }
+     
         });
     }
-    $("#btnSave").click(function () {
-        //循环找到文本框中的值
-        $("#frmProperty").find("input[type='text']").each(function() {
-            alert($(this).val());
-        });
-    });
     $(document).ready(function () {
-        initData(1);
+        initData();
+   
     });
-    function bindNavLinkEvent() {
-        //取得分页标签
-        $(".pageLink").click(function () {
-            //拿到href值
-            var href = $(this).attr("href");
-            //得到href中pageIndex的数据
-            var pageIndex = href.substr(href.lastIndexOf('?') + 1).substring(href.indexOf('='), href.indexOf('&') - 1);
-            //初始化表格
-            initData(pageIndex);
-            return false;
-        });
-    }
 </script>
 <section id="main-content">
-    <div style="margin-top: 0px;">
-        <div class="row" style="margin-top: 0px;">
-
-
-            <div class="modal-header">
-                <div class="btn_float" style=" margin-left:15px;">
-                    <button class="btn btn-primary green" data-toggle="modal" href="#mymodal" id="btnAdd">添加设备</button>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+              
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">添加行</a>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover " id="editable">
+                        <thead id="t_head">
+                          
+                        </thead>
+                    </table>
                 </div>
-                <div style="clear:both;"></div>
-            </div>
-            <table class="table table-striped table-hover table-bordered edit_add tb-h" id="tbPro" style="margin-top: 10px; width:95%">
-                <thead id="t_head">
-                    <tr></tr>
-                </thead>
-                <tbody id="tbody"></tbody>
-            </table>
-
-            <div class="col-sm-12 page_div" style="">
-                <span class="col-sm-2 page_total" style="white-space:nowrap">共有数据：<strong id="userCount"></strong> 条</span>
-                <div id="NavLink" class="paginator pd-20 col-sm-10" style="text-align: center"></div>
             </div>
         </div>
+    </div>
     </div>
   
 </section>
