@@ -47,6 +47,11 @@ namespace MTDS.Web.Controllers
             else
                 return null;
         }
+        public string getAssetTree()
+        {
+            DataTable dt = bll.GetAssetTree();
+            return JsonConvert.SerializeObject(dt);
+        }
 
 
     }
