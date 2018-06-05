@@ -1096,3 +1096,39 @@ LEFT JOIN (SELECT d2.Id,MAX(d2.CreateTime) CreateTime,MAX(d2.CreateBy) createby,
 
 
 end
+
+
+---修改存储5.28
+
+
+alter proc sp_getAssetTablebyAssetType
+@assetTypeID varchar(50)=null
+AS 
+BEGIN
+
+
+
+DECLARE @sql_str VARCHAR(8000)
+DECLARE @sql_col VARCHAR(8000)--='[c_id],[c_AssetTypeId]'
+SELECT @sql_col = ISNULL(@sql_col + ',','') + QUOTENAME([name]) FROM [AssetProperty] WHERE AssetTypeId=@assetTypeID GROUP BY name,sortcode ORDER BY sortcode
+PRINT @sql_col
+SET @sql_str = '
+SELECT * FROM (
+    SELECT ap.Name,ass.propertyValue,ass.AssetTypeId,ass.id FROM [AssetProperty] ap
+	LEFT JOIN 
+	dbo.Assets ass ON ap.Id=ass.propertyID) p PIVOT 
+    (max(propertyValue) FOR [name] IN ( '+ @sql_col +') ) AS pvt 
+	where id is not null'
+
+DECLARE @f_sql_str VARCHAR(8000)
+='
+SELECT  va.categoryName,va.DictionaryId,va.systemCategroyName,va.parentAssetTypeName,va.parentAssetTypeID,va.AssetTypeName,d.*,info.* FROM ('+@sql_str+'
+)
+ d
+LEFT JOIN dbo.v_AssetTypeAll  va ON va.AssetTypeId=d.AssetTypeId
+LEFT JOIN (SELECT d2.Id,MAX(d2.CreateTime) CreateTime,MAX(d2.CreateBy) createby,MAX(d2.ModifyTime) ModifyTime,MAX(d2.ModifyBy) ModifyBy FROM dbo.Assets d2 GROUP BY d2.Id) info
+ ON info.id=d.Id'
+
+ EXEC (@f_sql_str) 
+
+end

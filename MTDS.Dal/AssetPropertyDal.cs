@@ -60,14 +60,14 @@ namespace MTDS.Dal
         /// <returns></returns>
         public DataTable GetAssetbyType(Guid assetTypeId)
         {
-            using (var conn = new SqlConnection(Config.PlatformConnectionString))
-            {
+            var conn = new SqlConnection(Config.PlatformConnectionString);
+            
                 conn.Open();
-                var sqlcommand = new SqlCommand("sp_getAssetTablebyAssetType", conn);
-                sqlcommand.CommandType = CommandType.StoredProcedure;
+                var sqlcommand = new SqlCommand("exec sp_getAssetTablebyAssetType @assetTypeId", conn);
+                //sqlcommand.CommandType = CommandType.StoredProcedure;
 
-                SqlParameter[] parms = { new SqlParameter("@assetId",assetTypeId) };
-
+                SqlParameter[] parms = { new SqlParameter("@assetTypeId", assetTypeId) };
+                sqlcommand.Parameters.AddRange(parms);
                 SqlDataAdapter sqa = new SqlDataAdapter(sqlcommand);
 
                 DataSet ds = new DataSet();
@@ -75,9 +75,30 @@ namespace MTDS.Dal
                 sqa.Fill(ds);
 
                 return ds.Tables[0];
-            }
+            
         }
+        public DataTable GetAssetTree()
+        {
+            var conn = new SqlConnection(Config.PlatformConnectionString);
 
+            conn.Open();
+            var sqlcommand = new SqlCommand(@"SELECT ID,ParentId,Title,0 isAssetName FROM dbo.Dictionary  WHERE Code='AssetCagetory'
+                                            UNION
+                                            SELECT Id, DictionaryId, Name, isAssetName FROM dbo.AssetType
+                                            ", conn);
+            //sqlcommand.CommandType = CommandType.StoredProcedure;
+
+            //SqlParameter[] parms = { new SqlParameter("@assetTypeId", assetTypeId) };
+            //sqlcommand.Parameters.AddRange(parms);
+            SqlDataAdapter sqa = new SqlDataAdapter(sqlcommand);
+
+            DataSet ds = new DataSet();
+
+            sqa.Fill(ds);
+
+            return ds.Tables[0];
+
+        }
         /// <summary>
         /// 插入数据
         /// </summary>

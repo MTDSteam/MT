@@ -13,7 +13,8 @@ namespace MTDS.Web.Controllers
        
         public ActionResult Home()
         {
-            
+            ViewBag.UserName = Session["userName"].ToString();
+            ViewBag.RealName = Session["realName"].ToString();
             return View("Home");
         }
         public ActionResult LoadAccordionMenu()

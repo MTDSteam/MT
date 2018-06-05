@@ -1,83 +1,35 @@
-
-Ôªø@{
-    ViewBag.Title = "Â±ûÊÄßÁª¥Êä§";
+@{
+    ViewBag.Title = "test";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section id="main-content">
+<link href="~/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="~/css/plugins/jsTree/style.min.css" rel="stylesheet">
+<link href="~/css/animate.css" rel="stylesheet">
+<link href="~/css/style.css?v=4.1.0" rel="stylesheet">
+<script src="~/js/plugins/jeditable/jquery.jeditable.js"></script>
+<!-- Data Tables -->
+<script src="~/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="~/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<!-- ◊‘∂®“Âjs -->
+<script src="~/js/content.js?v=1.0.0"></script>
+<!-- jsTree plugin javascript -->
+<script src="~/js/plugins/jsTree/jstree.min.js"></script>
+<style>
+    .dataTable th {   
+    white-space: nowrap !important;  
+}  
 
-    <section class="wrapper site-min-height">
-        <div class="col-md-5">
-            <!-- START PANEL -->
-            <div class="panel ogr_add">
-                <header class="panel-heading add_padding">
-                    <span class="label label-primary">
-                        ËÆæÂ§áÁ±ªÂûã
-                    </span>
-                </header>
-                <div class="panel-body">
-                    <div id="menu"></div>
-                </div>
-            </div>
-            <!-- END PANEL -->
-        </div>
+.jstree-open > .jstree-anchor > .fa-folder:before {
+    content: "\f07c";
+}
 
-
-        <div class="col-md-7" id="floatDiv">
-            <div class="panel">
-                <header class="panel-heading add_padding">
-                    <span class="label label-primary">
-                        ËÆæÂ§áÂ±ûÊÄßÁª¥Êä§
-                    </span>
-                </header>
-                <div class="panel-body">
-                    <form method="post" name="" id="frmProperty" class="with_validate">
-                        
-                        @if (true)  //Â¶ÇÊûúÊúâÂ±ûÊÄßÂÄº,ÈªòËÆ§Âä†ËΩΩÂá∫Êù•
-                        {
-                            <div class="form-group col-sm-12 detail_form">
-                                <label class="control-label col-sm-2">
-                                    Â±ûÊÄßÂêçÁß∞Ôºö
-                                </label>
-                                <div class=" col-sm-10">
-                                    <input type="text" class="form-control" placeholder="ËØ∑ËæìÂÖ•Â±ûÊÄßÂêçÁß∞"  name="p1">
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            
-                        }
-
-                     
-                        
-                        
-                        <img src="/Images/btn_add.png" id="img_add" title="Ê∑ªÂä†Â±ûÊÄß" style="width: 2rem; cursor: pointer; margin-left: 5px;" onclick=" AddProperty() ">
-                        <img src="/Images/btn_del.png" id="img_del" title="Âà†Èô§ÊãêÁÇπÂùêÊ†á" style="width: 2rem; cursor: pointer; margin-left: 0px;" onclick=" DelProperty() ">
-                    </form>
-
-
-                </div>
-                
-                <div class="btn-group">
-                    <button id="btnSave" class="btn btn-primary">‰øùÂ≠ò</button>
-                    <button id="btnCancel" class="btn btn-default">ËøîÂõû</button>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-</section>
-
+.jstree-default .jstree-icon.none {
+    width: 0;
+}
+</style>
 <script type="text/javascript">
-    //Â¢ûÂä†Â±ûÊÄßÊñáÊú¨Ê°Ü
-    function AddProperty() {
-        var inputHtml = "<div class=\"form-group col-sm-12 detail_form\">" +
-            "<label class=\"control-label col-sm-2\">Â±ûÊÄßÂêçÁß∞:</label><div class=\" col-sm-10\">" +
-            "<input type=\"text\" class=\"form-control\" placeholder=\"ËØ∑ËæìÂÖ•Â±ûÊÄßÂêçÁß∞\"  name=\"p1\"></div></div>";
-        $("#img_add").prev().after(inputHtml);
-    }
-    //Âà†Èô§Â±ûÊÄßÊñáÊú¨Ê°Ü
+    //…æ≥˝ Ù–‘Œƒ±æøÚ
     function DelProperty() {
         if ($("#frmProperty").find("input").length > 1) {
             $("#img_add").prevAll("input:lt(2)").remove();
@@ -88,12 +40,252 @@
             $("#img_add").prev().prev().val("");
         }
     }
+    var oTable;
+    function initData(assetTypeID) {
+     
+        $.getJSON("../Property/getPropertyList", { id1: 1, assetTypeID: assetTypeID }, function (data) {
+            if (data != "error") {
+                var str = "";
+                var head_str = "<tr>";
+                $("#t_head").html("");
+                var column = new Array();
+                var columnNum = 0;
 
+                var columnData=[];
+                for (var obj in data.aaData[0]) {
+                    if (obj == "categoryName") {
+                        head_str += "<td style='width:15%'>∑÷¿‡</td>";
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
+                    }
+                    else if (obj == "DictionaryId" || obj == "parentAssetTypeID" || obj == "AssetTypeId" || obj == "id" || obj == "Id1" || obj == "CreateTime"
+                        || obj == "createby" || obj == "ModifyTime" || obj == "ModifyBy" || obj == "CreateTime") {
+                        continue;
+                    }
+                    else if (obj == "systemCategroyName") {
+                        head_str += "<td style='width:15%'>œµÕ≥∑÷¿‡</td>";
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
+                    }
+                    else if (obj == "parentAssetTypeName") {
+                        head_str += "<td style='width:15%'>…Ë±∏¿‡–Õ</td>";
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
+                    }
+                    else if (obj == "AssetTypeName") {
+                        head_str += "<td style='width:15%'>…Ë±∏</td>";
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
+                    }
+                    else {
+                        head_str += "<td style='width:15%'>" + obj + "</td>";
+                        column[columnNum] = obj;
+                        var col = {};
+                        col['data']=obj;
+                        columnData.push(col)
+                        columnNum++;
+                    }
+                }
+                $("#t_head").append(head_str);
 
-    $("#btnSave").click(function () {
-        //Âæ™ÁéØÊâæÂà∞ÊñáÊú¨Ê°Ü‰∏≠ÁöÑÂÄº
-        $("#frmProperty").find("input[type='text']").each(function() {
-            alert($(this).val());
+                //for (var i = 0; i < data.length; i++) {
+                //    str += "<tr class='gradeA'><td>" + data[i].categoryName + "</td>";
+                //    str += "<td>" + data[i].systemCategroyName + "</td>";
+                //    str += "<td>" + data[i].parentAssetTypeName + "</td>";
+                //    str += "<td>" + data[i].AssetTypeName + "</td>";
+                //    for (var j = 0; j < column.length;j++) {
+
+                //        str += "<td>" + data[i][column[j]] + "</td>";
+                //    }
+                //    str += "<td><a class=\"edit more\" data-toggle=\"modal\" href=\"#mymodal\" onclick=\"Edit('" + data[i].ID + "')\"><span class=\"label label-success \">±‡º≠</span></a>";
+                //    str += "<a class=\"edit more\"  href=\"javascript:;\" onclick=\"Delete(this,'" + data[i].ID + "')\"><span class=\"label label-success \">…æ≥˝</span></a>";
+                //    str += "</td></tr>";
+                //}
+                //$("#t_body").append(str);
+                if (oTable != undefined) {
+                    oTable.fnClearTable();
+                    oTable.fnDestroy();
+                }
+                 oTable = $('#editable').dataTable({
+                    "ajax": {
+                        url: "../Property/getPropertyList?assetTypeID",
+                        data: { "assetTypeID": "3CFD0EFE-9CF6-4E65-A369-073DBF2ED1D0" },
+                        type: "POST"
+
+                    },
+                 
+                    "bAutoWidth": true,
+                    "dataType": "json",
+                    "bSort": false,
+                    "serverSide": true,
+                    "columns": columnData
+
+                });
+             
+            } else {
+                $("#t_body").html("");
+            }
+     
         });
+    }
+    function GetSubmenu(ModuleId, data) {
+        var submenu = "<ul>";
+        $.each(data, function (i) {
+            if (data[i].ParentId.toUpperCase() == ModuleId.toUpperCase()) {
+                //≈–∂œ «∑Òªπ”–◊”º∂£¨»Áπ˚√ª”–£¨‘ÚÃÌº”∆‰À˚—˘ Ω
+                //var css = "  ";
+                var css = " data-jstree='{\"type\":\"html\"}' onclick=\"initData('"+data[i].ID+"')\" ";
+                $.each(data, function (j) {
+                    if (data[j].ParentId.toUpperCase() == data[i].ID.toUpperCase()) {
+                        css = "";
+                    }
+
+                });
+                submenu += "<li "+css+ " title=" + data[i].Title + ">"
+                submenu +=data[i].Title
+                submenu += GetSubmenu(data[i].ID.toUpperCase(), data);
+                submenu   += "</li>";
+               
+            }
+        });
+        submenu += "</ul>";
+        return submenu;
+    }
+    $(document).ready(function () {
+      
+
+     
+            var html = "<ul>";
+            $.getJSON("../Property/getAssetTree", "", function (data) {
+                //accordionJson = eval("(" + data + ")");
+                $.each(data, function (i) {
+                    if (data[i].ParentId.toUpperCase() == '275BB169-02FA-4D83-AE51-C33BE290B9E4') {
+                        html += "<li class='jstree-open'  title=" + data[i].Title + ">";
+
+                        html += data[i].Title
+                        html += GetSubmenu(data[i].ID.toUpperCase(), data);
+                        html += "</li>";
+                    }
+                });
+                html+="</ul>"
+                $("#jstree1").append(html);
+
+                $('#jstree1').jstree({
+                    'core': {
+                        'check_callback': true
+                    },
+                    'plugins': ['types', 'dnd'],
+                    'types': {
+                        'default': {
+                            'icon': 'fa fa-folder'
+                        },
+                        'html': {
+                            'icon': 'fa fa-file-code-o'
+                        },
+                        'svg': {
+                            'icon': 'fa fa-file-picture-o'
+                        },
+                        'css': {
+                            'icon': 'fa fa-file-code-o'
+                        },
+                        'img': {
+                            'icon': 'fa fa-file-image-o'
+                        },
+                        'js': {
+                            'icon': 'fa fa-file-text-o'
+                        }
+
+                    }
+                });
+            })
+         
+        
+        //µº∫Ω◊”≤Àµ•
+    
+        //$('#jstree1').jstree({
+
+        //    'core': {
+        //        'check_callback': true
+        //    },
+        //    'plugins': ['types', 'dnd'],
+        //    data: function (obj, callback) {
+        //        var jsonstr = "[]";
+        //        var jsonarray = eval('(' + jsonstr + ')');
+        //        $.ajax({
+        //            type: "POST",
+        //            url: "../Property/getAssetTree",
+        //            dataType: "json",
+        //            async: false,
+        //            success: function (result) {
+        //                var arrays = result.data;
+        //                for (var i = 0 ; i < arrays.length; i++) {
+        //                    var arr = {
+        //                        "id": arrays[i].ID,
+        //                        "parent": arrays[i].ParentId == "root" ? "#" : arrays[i].ParentId,
+        //                        "text": arrays[i].Title
+        //                    }
+        //                    jsonarray.push(arr);
+        //                }
+        //            }
+
+        //        });
+        //        callback.call(this, jsonarray);
+        //    },
+        //    'types': {
+        //        'default': {
+        //            'icon': 'fa fa-folder'
+        //        },
+        //        'html': {
+        //            'icon': 'fa fa-file-code-o'
+        //        },
+        //        'svg': {
+        //            'icon': 'fa fa-file-picture-o'
+        //        },
+        //        'css': {
+        //            'icon': 'fa fa-file-code-o'
+        //        },
+        //        'img': {
+        //            'icon': 'fa fa-file-image-o'
+        //        },
+        //        'js': {
+        //            'icon': 'fa fa-file-text-o'
+        //        }
+
+        //    }
+        //});
+   
+   
     });
 </script>
+<section id="main-content">
+    <div class="ibox float-e-margins">
+    <div  style="width:25%;float:left">
+        <div id="jstree1">
+           
+        </div>
+    </div>
+    </div>
+    <div style="width:74%;float:left;overflow:auto">
+  
+            <div class="ibox float-e-margins" style="width:2050px;height:auto">
+              
+                <div class="ibox-content">
+                    <div class="">
+                        <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">ÃÌº”––</a>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover " id="editable" style="width:2000px;">
+                        <thead id="t_head">
+                          
+                        </thead>
+                    </table>
+                </div>
+        
+        </div>
+    </div>
+    </div>
+  
+</section>

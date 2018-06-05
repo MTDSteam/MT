@@ -34,7 +34,10 @@ namespace MTDS.BLL
         {
             return _dal.GetAssetbyType(assetTypeID);
         }
-
+        public DataTable GetAssetTree()
+        {
+            return _dal.GetAssetTree();
+        }
         /// <summary>
         /// 插入数据
         /// </summary>

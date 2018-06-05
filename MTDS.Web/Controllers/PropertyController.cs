@@ -20,18 +20,37 @@ namespace MTDS.Web.Controllers
         }
 
         AssetPropertyBll bll = new AssetPropertyBll();
-        [HttpPost]
-        public JsonResult getPropertyList()
+  
+        public string getPropertyList()
         {
+          
+
+            var pageIndex = Request["page"] != null ? int.Parse(Request["page"]) : 1;
+            var pageSize= Request["rows"] != null ? int.Parse(Request["rows"]) : 10;
+            int totalCount=1;
+
             var assetTypeID = Request["assetTypeID"];
             if (!string.IsNullOrEmpty(assetTypeID))
             {
                 DataTable dt = bll.GetAssetbyType(new Guid(assetTypeID));
-                return Json(dt, JsonRequestBehavior.AllowGet);
+                //return JsonConvert.SerializeObject(dt);
+                var totalPages = 1;
+                var jsonData = new
+                {
+                    recordsTotal = totalCount,
+                    draw = pageIndex,
+                    recordsFiltered = totalPages,
+                    aaData = dt
+                };
+                return JsonConvert.SerializeObject(jsonData);
             }
             else
                 return null;
-      
+        }
+        public string getAssetTree()
+        {
+            DataTable dt = bll.GetAssetTree();
+            return JsonConvert.SerializeObject(dt);
         }
 
 
