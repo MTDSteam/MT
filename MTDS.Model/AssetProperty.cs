@@ -16,5 +16,7 @@ namespace MTDS.Model
        public string CreateBy { get; set; }
        public DateTime ModifyTime { get; set; }
        public string ModifyBy { get; set; }
+
+        public int SortCode { get; set; }
     }
 }
