@@ -12,7 +12,7 @@ using Newtonsoft.Json.Converters;
 
 namespace MTDS.Web.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private UserBll uBll = new UserBll();
         private const int pageSize = 10;
@@ -28,7 +28,8 @@ namespace MTDS.Web.Controllers
         public string GetList()
         {
             var pageIndex = Convert.ToInt32(Request["id1"]);
-            var list = uBll.GetList();
+            var userName = HttpContext.Request["name"];
+            var list = uBll.GetList(userName);
 
             if (list.Count() >= 0)
             {
@@ -67,6 +68,7 @@ namespace MTDS.Web.Controllers
             var password = Request.Form["txtPassword"];
             var mobile = Request.Form["txtTel"];
             var email = Request.Form["txtEmail"];
+            var userType = Request.Form["userType"];
             var address = Request.Form["txtAddress"];
 
             if (hidId.IsNullOrEmpty())
@@ -87,6 +89,7 @@ namespace MTDS.Web.Controllers
                         Mobile = mobile,
                         Email = email,
                         Address = address,
+                        UserType=userType,
                         CreateTime = DateTime.Now,
                         ModifyTime = DateTime.Now,
                         CreateBy = Session["userName"] != null ? Session["userName"].ToString() : ""
@@ -112,6 +115,7 @@ namespace MTDS.Web.Controllers
                 uu.Mobile = mobile;
                 uu.Email = email;
                 uu.Address = address;
+                uu.UserType = userType;
                 uu.ModifyTime=DateTime.Now;
                 uu.ModifyBy = Session["userName"] != null ? Session["userName"].ToString() : "";
 

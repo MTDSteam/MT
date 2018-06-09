@@ -16,9 +16,9 @@ namespace MTDS.BLL
         /// 获取全部数据
         /// </summary>
         /// <returns></returns>
-        public List<Users> GetList()
+        public List<Users> GetList(string loginName="")
         {
-            return _dal.GetList();
+            return _dal.GetList(loginName);
         }
 
         /// <summary>

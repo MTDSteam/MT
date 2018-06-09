@@ -14,11 +14,17 @@ namespace MTDS.Dal
         /// 获取全部数据
         /// </summary>
         /// <returns></returns>
-        public List<Users> GetList()
+        public List<Users> GetList(string loginName="")
         {
             using (var conn = DapperHelper.CreateConnection())
             {
-                string sql = "Select * from Users";
+                string sql = "select ROW_NUMBER() over(order by UserType) as RowNum,u.* from Users as u where 1=1";
+
+                if (!string.IsNullOrEmpty(loginName))
+                {
+                    sql += " and u.loginName like '%" + loginName + "%' ";
+                }
+
                 return conn.Query<Users>(sql).ToList();
             }
         }
@@ -32,7 +38,7 @@ namespace MTDS.Dal
             using (var conn = DapperHelper.CreateConnection())
             {
                 string sql =
-                    "Insert into Users(UserID, loginName, username, password, email, mobile, telephone, provinceID, AreaID, CountyID, address, remark, lastlogintime, ParentID, CreateTime, CreateBy, ModifyTime, ModifyBy) values(@UserID, @loginName, @username, @password, @email, @mobile, @telephone, @provinceID, @AreaID, @CountyID, @address, @remark, @lastlogintime, @ParentID, @CreateTime, @CreateBy, @ModifyTime, @ModifyBy)";
+                    "Insert into Users(UserID, loginName, username, password, email, mobile, telephone, provinceID, AreaID, CountyID, address, remark, lastlogintime, ParentID, CreateTime, CreateBy, ModifyTime, ModifyBy,UserType) values(@UserID, @loginName, @username, @password, @email, @mobile, @telephone, @provinceID, @AreaID, @CountyID, @address, @remark, @lastlogintime, @ParentID, @CreateTime, @CreateBy, @ModifyTime, @ModifyBy,@UserType)";
                 return conn.Execute(sql, model);
             }
         }
@@ -48,7 +54,7 @@ namespace MTDS.Dal
                 string sql =
                     "Update users set loginName=@loginName,username=@username,email=@email,mobile=@mobile," +
                     "Address=@Address,ModifyTime=@ModifyTime," +
-                    "ModifyBy=@ModifyBy where UserID=@UserID";
+                    "ModifyBy=@ModifyBy,UserType=@UserType where UserID=@UserID";
                 return conn.Execute(sql, model);
             }
         }
@@ -89,7 +95,7 @@ namespace MTDS.Dal
             using (var conn = DapperHelper.CreateConnection())
             {
                 string sql = "Select * from Users where loginName='"+account+"'";
-                return conn.Query<Users>(sql).SingleOrDefault();
+                return conn.Query<Users>(sql).FirstOrDefault();
             }
         }
     }

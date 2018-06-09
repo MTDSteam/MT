@@ -16,6 +16,11 @@ namespace MTDS.Web.Controllers
 
         public ActionResult Index()
         {
+            //清除用户Session信息
+            Session.Remove("");
+            Session.Remove("");
+            Session.Remove("");
+            Session.Remove("");
             return View();
         }
 

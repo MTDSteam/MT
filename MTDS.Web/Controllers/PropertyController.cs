@@ -9,7 +9,7 @@ using System.Data;
 using MTDS.BLL;
 namespace MTDS.Web.Controllers
 {
-    public class PropertyController : Controller
+    public class PropertyController : BaseController
     {
         //
         // GET: /Property/

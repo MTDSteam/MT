@@ -78,17 +78,32 @@
                     </div>
                 </div>
                
+               <div class="clearfix">
+                   <div class="form-group col-sm-3">
+                       <label class="control-label col-sm-4 col-lg-4">
+                           用户名：
+                       </label>
+                       <div class="col-sm-8 col-lg-8" >
+                           <input id="txtSearch" name="txtSearch" type="text" class="form-control" placeholder="请输入用户名">
+                       </div>
+                   </div>
+
+                   <div class="btn-group">
+                       <input class="btn btn-primary search_btn" type="button" value="搜索" id="btnSearch">
+                   </div>
+               </div>
                
                 <div class="ibox-content">
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
                             <tr>
-                                <th style="width:7%;">用户名</th>
-                                <th style="width:12%;">账号</th>
+                                <th style="width:5%">序号</th>
+                                <th style="width:10%;">姓名</th>
+                                <th style="width:12%;">登录账号</th>
                                 <th style="width:12%;">Email</th>
                                 <th style="width:20%;">手机</th>
                                 <th style="width:10%;">详细地址</th>
-                                <th style="width:10%;">创建时间</th>
+                                <th style="width:10%;">用户类型</th>
                                 <th style="width:9%;">操作</th>
                             </tr>
                         </thead>
@@ -106,16 +121,17 @@
 </div>
 
 
-<div class="modal fade" id="mymodal" style="overflow: auto;margin-top: 50px">
+<div class="modal fade" id="mymodal" style="overflow: auto;margin-top:0px">
     <div id="myDiv" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #52acee">
                 <button type="button" class="close modal_out" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="text_title">添加用户</h4>
             </div>
-            <div class="modal-body" style="height: 370px;">
+            <div class="modal-body" style="height: 400px;">
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="commentForm">
+                        <input type="hidden" id="HidUId" name="HidUId" /> >
                         <div class="form-group">
                             <label class="col-sm-3 control-label">姓名：</label>
                             <div class="col-sm-8">
@@ -130,6 +146,16 @@
                             </div>
                         </div>
                         
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户类型:</label>
+                            <div class="col-sm-8">
+                                <select id="userType" name="userType" class="form-control">
+                                    <option value="0">系统管理员</option>
+                                    <option value="1" selected>一般工作人员</option>
+                                    <option value="2">运维人员</option>
+                                </select>
+                            </div>
+                        </div>
                         
                         <div class="form-group" id="pss">
                             <label class="col-sm-3 control-label">密码：</label>
@@ -188,23 +214,37 @@
 
 <script type="text/javascript">
 
+    var pageX = 1;
+
     $(document).ready(function () {
         //$('.dataTables-example').dataTable();
         initData(1);
     });
     //初始化数据
     function initData(pageIndex) {
-        $.getJSON("../User/GetList", { id1: pageIndex }, function (data) {
+        var txtSearchName = $("#txtSearch").val();
+        $.getJSON("../User/GetList", { id1: pageIndex,name:txtSearchName }, function (data) {
             if (data != "error") {
                 var str = "";
                 $("#tbody").html("");
                 for (var i = 0; i < data.T.length; i++) {
-                    str += "<tr><td>" + data.T[i].Username + "</td>";
+                    str += "<tr><td>" + data.T[i].RowNum + "</td><td>" + data.T[i].Username + "</td>";
                     str += "<td>" + data.T[i].LoginName + "</td>";
                     str += "<td>" + data.T[i].Email + "</td>";
                     str += "<td>" + data.T[i].Mobile + "</td>";
                     str += "<td>" + data.T[i].Address + "</td>";
-                    str += "<td>" + data.T[i].CreateTime + "</td>";  //质保期限
+
+                    var userType = "";
+                    if (data.T[i].UserType == "0") {
+                        userType = "系统管理员";
+                    } else if (data.T[i].UserType == "1") {
+                        userType = "一般工作人员";
+                    } else {
+                        userType = "运维人员";
+                    }
+
+
+                    str += "<td>" + userType+ "</td>";  //质保期限
 
                     str += "<td><a class=\"btn btn-primary\" data-toggle=\"modal\" href=\"#mymodal\" onclick=\"Edit('" + data.T[i].UserID + "')\">编辑</a>";
                     str += "<a class=\"btn btn-danger\"  href=\"javascript:;\" onclick=\"Delete(this,'" + data.T[i].UserID + "')\">删除</a>";
@@ -267,6 +307,7 @@
             var pageIndex = href.substr(href.lastIndexOf('?') + 1).substring(href.indexOf('='), href.indexOf('&') - 1);
             //初始化表格
             initData(pageIndex);
+            pageX = pageIndex;
             return false;
         });
     }
@@ -281,7 +322,7 @@
                 } else {
                     layer.msg("删除失败", { icon: 2, time: 2000 });
                 }
-                initData(1);
+                initData(pageX);
             });
         });
     }
@@ -294,7 +335,8 @@
                 $("#pss").hide();
                 $("#HidUId").val(id);  //编号Id
                 $("#txtRealName").val(data.Username); //用户名
-                $("#txtloginName").val(data.LoginName);  //登录名
+                $("#txtloginName").val(data.LoginName);  //登录名.
+                $("#userType").val(data.UserType);
                 $("#txtTel").val(data.Mobile);
                 $("#txtEmail").val(data.Email);
                 $("#txtAddress").val(data.Address);
@@ -307,5 +349,9 @@
     $(".modal_out").click(function () {
         clear();
     });
+    //搜索
+    $("#btnSearch").click(function () {
+        initData(1);
+    })
 
 </script>

@@ -13,6 +13,8 @@ namespace MTDS.Model
             Lastlogintime=DateTime.Now;
             ModifyTime=DateTime.Now;
         }
+       //序号  非数据库字段
+        public int RowNum { get; set; }
         /// <summary>
         /// 用户编号
         /// </summary>
@@ -41,6 +43,10 @@ namespace MTDS.Model
         /// 电话
         /// </summary>
         public string Telephone { get; set; }
+        /// <summary>
+        /// 用户类型
+        /// </summary>
+        public string UserType { get; set; }
         /// <summary>
         /// 省编号
         /// </summary>

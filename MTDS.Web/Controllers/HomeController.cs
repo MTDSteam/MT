@@ -8,13 +8,13 @@ using System.Text;
 
 namespace MTDS.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
        
         public ActionResult Home()
         {
-            ViewBag.UserName = Session["userName"].ToString();
-            ViewBag.RealName = Session["realName"].ToString();
+            ViewBag.UserName = Session["userName"]!=null?Session["userName"].ToString():"";
+            ViewBag.RealName =Session["realName"]!=null? Session["realName"].ToString():"";
             return View("Home");
         }
         public ActionResult LoadAccordionMenu()
