@@ -26,7 +26,7 @@ namespace MTDS.BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<AssetProperty> GetByAssetType(Guid id)
+        public DataTable GetByAssetType(Guid id)
         {
             return _dal.GetByAssetType(id);
         }
@@ -47,7 +47,10 @@ namespace MTDS.BLL
         {
             return _dal.Insert(model);
         }
-
+        public int InsertAsset(List<Asset> model)
+        {
+            return _dal.InsertAsset(model);
+        }
         /// <summary>
         /// 更新数据
         /// </summary>
